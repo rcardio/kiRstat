@@ -1,0 +1,52 @@
+---
+title: "Gruppkontrakt för grupp 10"
+output: 
+  pdf_document
+---
+
+```{r setup, include=FALSE}
+# Install TinyTeX if it is not already installed
+if (!requireNamespace("tinytex", quietly = TRUE)) {
+  install.packages("tinytex")
+  tinytex::install_tinytex()
+}
+```
+
+# Gruppavtal
+
+### Studieförutsättningar
+
+Tex: Anna Olsson: Jag kommer främst att arbeta med kursen på fredagar och helger. Övriga dagar kan jag möjligen läsa på kvällstid, eftersom jag jobbar dagtid måndag till fredag. Jag har inte läst statistik tidigare. 
+
+Jacob Widaeus:
+Karl Wärnberg:
+Rozh Kader:
+
+
+### På vilket sätt vill vi hjälpas åt i studierna?
+
+Vi vill hjälpas åt genom att regelbundet kommunicera och dela med oss av våra kunskaper och erfarenheter. Vi kan använda oss av gemensamma studiegrupper, där vi kan diskutera och lösa problem tillsammans. Vi kan också dela med oss av resurser och studiematerial som kan vara till nytta för alla i gruppen. Genom att hjälpa varandra kan vi öka förståelsen och effektiviteten i våra studier.
+
+### Hur ska vi dela upp arbetet?
+
+Vi kan dela upp arbetet genom att tilldela specifika uppgifter till varje gruppmedlem baserat på deras styrkor och intressen. Vi kan också rotera uppgifter för att säkerställa att alla får möjlighet att lära sig olika delar av kursen.
+
+### Vad ska vi göra om någon inte gör sin del av arbetet i tid?
+
+Om någon inte gör sin del av arbetet i tid, ska vi först försöka förstå orsaken och erbjuda hjälp om det behövs. Om problemet kvarstår, kan vi diskutera det som en grupp och hitta en lösning tillsammans.
+
+### På vilket sätt och hur ofta ska vi utvärdera hur arbetet i gruppen fungerar?
+
+Vi ska utvärdera hur arbetet i gruppen fungerar genom regelbundna möten, till exempel en gång i veckan. Under dessa möten kan vi diskutera vad som fungerar bra och vad som kan förbättras.
+
+### Finns det ytterligare regler vi bör ha i vår grupp?
+
+Vi bör ha regler för att säkerställa att alla bidrar lika mycket och att vi respekterar varandras åsikter och tid. Vi kan också ha regler för hur vi kommunicerar och delar material.
+
+### Namnen på alla deltagare som bidragit till och godkänt kontraktet
+
+`r Sys.Date()`
+
+Jacob Widaeus
+Karl Wärnberg
+Rozh Kader
