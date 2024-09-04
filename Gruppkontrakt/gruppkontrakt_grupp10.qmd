@@ -9,8 +9,12 @@ execute:
 
 ### Studieförutsättningar
 
-Jacob Widaeus: Jag kommer arbeta på kursen under vardagskvällar. Dagtid till vardags arbetar jag. Jag har kunskap av R, git, python och statistik sedan tidigare.\
-Karl Wärnberg: Jag kommer arbeta på vardagskvällar och helger. 21-28/9 (vecka 39) är jag bortrest. Jag har ingen erfarenhet av R, Git eller python. Jag har mycket begränsad erfarenhet av statistik och programmering. 
+Jacob Widaeus: Jag kommer arbeta på kursen under vardagskvällar. Jag har kunskap av R, git, python och statistik sedan tidigare.
+\
+
+Karl Wärnberg: Jag kommer arbeta på vardagskvällar och helger. 21-28/9 (vecka 39) är jag bortrest. Jag har ingen erfarenhet av R, Git eller python. Jag har mycket begränsad erfarenhet av statistik och programmering.
+\
+
 Rozh Kader:
 
 ### På vilket sätt vill vi hjälpas åt i studierna?
@@ -40,6 +44,10 @@ from datetime import datetime
 print(datetime.now().strftime("%Y-%m-%d"))
 ```
 
-Jacob Widaeus\
-Karl Wärnberg\
-Rozh Kader
+Jacob Widaeus
+
+\
+Karl Wärnberg
+
+\
+Rozh Kader\
