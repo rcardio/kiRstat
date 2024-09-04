@@ -15,7 +15,7 @@ Jacob Widaeus: Jag kommer arbeta på kursen under vardagskvällar. Jag har kunsk
 Karl Wärnberg: Jag kommer arbeta på vardagskvällar och helger. 21-28/9 (vecka 39) är jag bortrest. Jag har ingen erfarenhet av R, Git eller python. Jag har mycket begränsad erfarenhet av statistik och programmering.
 \
 
-Rozh Kader:
+Rozh Kader: Jag kommer arbeta på vardagskvällar och helger. Jag har ingen erfarenhet av R, git eller python. 
 
 ### På vilket sätt vill vi hjälpas åt i studierna?
 
