@@ -1,6 +1,6 @@
 ---
 title: "Gruppavtal för grupp 10"
-format: pdf
+format: docx
 execute:
   echo: false
   r: true
