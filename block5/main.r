@@ -1,7 +1,5 @@
 library(tidyverse)
 library(survival)
+output_path = "block5/data/jasa.csv"
 
-data(jasa, package="survival")
-view(jasa)
-
-write_csv(jasa, "jasa.csv")
+start(output_path)
