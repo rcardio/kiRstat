@@ -1,7 +1,7 @@
 ---
 title: "Gruppavtal för grupp 10"
 format:
-  pdf
+  docx
 execute:
   echo: false
   r: true
@@ -10,20 +10,15 @@ execute:
 
 ### Studieförutsättningar
 
-Jacob Widaeus: Jag kommer arbeta på kursen under vardagskvällar. Jag har kunskap av R, git, python och statistik sedan tidigare.
-\
+Jacob Widaeus: Jag kommer arbeta på kursen under vardagskvällar. Jag har kunskap av R, git, python och statistik sedan tidigare.\
 
-Karl Wärnberg: Jag kommer arbeta på vardagskvällar och helger. 21-28/9 (vecka 39) är jag bortrest. Jag har ingen erfarenhet av R, Git eller python. Jag har mycket begränsad erfarenhet av statistik och programmering.
-\
+Karl Wärnberg: Jag kommer arbeta på vardagskvällar och helger. 21-28/9 (vecka 39) är jag bortrest. Jag har ingen erfarenhet av R, Git eller python. Jag har mycket begränsad erfarenhet av statistik och programmering.\
 
-Alexander Ramirez: Då jag pluggar på heltid samt jobbet utanför kursen så kommer mitt pluggande ske främst på vardagskvällar och helger. Jag har tidigare erfarenhet av programmering (Java, SQL, Python) och Github men inte R eller statistik verktyg. 
-\
+Alexander Ramirez: Då jag pluggar på heltid samt jobbet utanför kursen så kommer mitt pluggande ske främst på vardagskvällar och helger. Jag har tidigare erfarenhet av programmering (Java, SQL, Python) och Github men inte R eller statistik verktyg.\
 
-Rozh Kader: Jag har kommer arbeta på helger och kvällar utöver mitt heltidsarbete. Jag har ingen formell erfarenhet av programmering, R, GitHub eller statistik men hittar runt i Rstudio. 
-\
+Rozh Kader: Jag har kommer arbeta på helger och kvällar utöver mitt heltidsarbete. Jag har ingen formell erfarenhet av programmering, R, GitHub eller statistik men hittar runt i Rstudio.\
 
-Beata Rosenberg: Jag kommer arbeta vardagskvällar. Jag har erfarenhet av R, Python och statistik sedan tidigare, med varierande kunskap. Känner till GitHub sedan tidigare och kan navigera det men ingen praktisk erfarenhet av att använda det själv.
-\
+Beata Rosenberg: Jag kommer arbeta vardagskvällar. Jag har erfarenhet av R, Python och statistik sedan tidigare, med varierande kunskap. Känner till GitHub sedan tidigare och kan navigera det men ingen praktisk erfarenhet av att använda det själv.\
 
 ### På vilket sätt vill vi hjälpas åt i studierna?
 
