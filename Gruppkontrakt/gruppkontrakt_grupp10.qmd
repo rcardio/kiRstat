@@ -20,6 +20,8 @@ Rozh Kader: Jag har kommer arbeta på helger och kvällar utöver mitt heltidsar
 
 Beata Rosenberg: Jag kommer arbeta vardagskvällar. Jag har erfarenhet av R, Python och statistik sedan tidigare, med varierande kunskap. Känner till GitHub sedan tidigare och kan navigera det men ingen praktisk erfarenhet av att använda det själv.\
 
+Eduardo Ugaz Ynguil: Jag kommer arbeta på kvällar och helger. Jag har ingen erfarenhet av GitHub, men lite av R, Python och Statistik.\
+
 ### På vilket sätt vill vi hjälpas åt i studierna?
 
 Vi vill hjälpas åt genom att regelbundet kommunicera och dela med oss av våra kunskaper och erfarenheter. Vi kan använda oss av gemensamma studiegrupper, där vi kan diskutera och lösa problem tillsammans. Vi kan också dela med oss av resurser och studiematerial som kan vara till nytta för alla i gruppen. Genom att hjälpa varandra kan vi öka förståelsen och effektiviteten i våra studier.
@@ -60,3 +62,6 @@ Rozh Kader
 
 \
 Beata Rosenberg
+
+\
+Eduardo Ugaz Ynguil
