@@ -1,7 +1,7 @@
 ---
 title: Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala gränssnittssatsen
 author: Statistiska Metoder med R
-format: docx
+format: pdf
 echo: True
 ---
 
@@ -23,47 +23,89 @@ Om du kör fast men någon uppgift ta hjälp av dina kurskamrater i första hand
 
 **1.1** Ladda ISwR paketet och printa ut de fem första raderna i data.frame stroke med
 
-stroke\[1:5,\]
+```{r}
+library(ISwR)
+stroke[1:5,]
+```
 
 Varför står det ett ensamt komma efter 1:5?
 
-**1.2** Använd funktionen names() för att ta ut en lista på variabler i stroke
+För att markera att det gäller samtliga kolumner.
 
+**1.2** Använd funktionen names() för att ta ut en lista på variabler i stroke
+```{r}
 names(stroke)
+```
 
 **1.3** Är age tillgänglig? Testa:
 
+```{r error=TRUE}
 age
+```
 
 **1.4** Använd attach för att namnen i stroke ska blir tillgängliga för R
 
+```{r}
 attach(stroke)
+```
 
 Testa igen om age är tillgänglig:
 
-age
+```{r}
+print(age[1:20])
+```
 
 **1.5** Vad är tanken med attach egentligen? Vad finns det för fördel med att R inte automatiskt ser namnen inne i ett objekt? Och om det nu är så bra, finns det något sätt att få R att glömma namnen i ett objekt? (ISwR sid.36)
 
+Tanken med attach är att göra variabler "direkta" i en workspace utan att behöva referera till data frame.
+I större projekt där man använder många data set och frames och kanske listor underlättar namngivning etc utan attach.
+detach() kan användas för att återställa variabeltillgängligheten.
+
 **1.6** Använd tapply() för att beräkna medelvärde för variabeln age, uppdelat på patienter som varit i koma eller inte efter sin stroke.
+
+```{r}
+tapply(stroke$age, stroke$coma, mean, na.rm = TRUE)
+
+```
 
 **1.7** Använd tapply() för att beräkna medianålder för patienten uppdelat på olika diagnos, dgn.
 
+```{r}
+tapply(stroke$age, stroke$dgn, median, na.rm = TRUE)
+```
+
 **1.8** Använd funktionen table() för att göra en korstabell över variablerna dgn och sex i stroke
 
-table(sex, dgn)
+```{r}
+table(stroke$sex, stroke$dgn)
+```
 
 **Använd valfria data i stroke för att skapa grafer:**
 
 **2.1** stapeldiagram
+```{r}
+barplot(table(stroke$sex))
+```
 
 **2.2** histogram
+```{r}
+hist(stroke$age)
+```
 
 **2.3** box plot
+```{r}
+boxplot(stroke$obsmonths ~ stroke$dead)
+```
 
 **2.4** spridningsdiagram (scatter plot)
+```{r}
+plot(stroke$died, stroke$age)
+```
 
 **2.5** cirkeldiagram
+```{r}
+pie(table(stroke$dgn))
+```
 
 Förutom att redovisa din kod och klippa in den resulterande grafen vill jag att du kommenterar kort vad varje typ av graf är lämplig för att illustrera.
 
