@@ -1,0 +1,531 @@
+---
+title: Inlämningsuppgift block 4 – hypotestest, konfidensintervall
+author: Statistiska Metoder med R
+format: pdf
+echo: True
+---
+Försättsblad
+
+Gruppnamn 10
+
+Namn och personnummer på dem som deltagit aktivt:
+
+Jacob Widaeus 950729
+
+Hej
+
+Denna gruppuppgift berör materialet i ISwR kapitel 5 och 7. Du kommer att använda R för att genomföra ett antal hypotesttest. Uppgifterna ska belysa koncept som förklaras bättre i andra böcker än ISwR. Sidhänvisningarna för Lind/Marchal/Wathen är för upplaga 17 i denna text. Om du har en annat upplaga får du leta lite grann. Sidhänvisningarna gäller Lind om inget annan anges.
+
+Låt mig påminna dig om en viktig sak innan du börjar. Den här kursen är inte del av något program som vill bestämma över dig. **Det är din kurs**, och du kan välja vad den ska innehålla. Tanken med inlämningsuppgiften är att låta dig utforska hypotesprövning och samtidigt lära dig några R-knep. **Om du fastnar lång tid i något som du inte vill fokusera på**,skriv en kommentar och gå vidare. Du har kanske en gruppkamrat som prioriterat annorlunda, genom att samarbeta kan ni få ihop hela uppgiften ändå. Det krävs inte alla rätt – viktigast är att lämna in i tid.
+
+polygon() är till exempel en smaksak. Svårt eller lätt? Användbart eller ointressant? Det finns ett dokument med tips om polygon som du kan använda: tips till inlämningsuppgift 4 polygon.docx
+
+**1\. En enstaka observation jämförd med en känd population**
+
+Du har tidigare beräknat hur stor andel av befolkningen som har blodtrycket 80mmHg eller lägre. Förutsättningen för din beräkning är att variabeln blodtryck är normalfördelad, samt att du känner till medelvärdet och standardavvikelsen för populationen.
+
+Samma typ av beräkning kan användas för ett hypotestest, en beräkning som talar om hur ovanlig en observation är, förutsatt att nollhypotesen är sann. Tänk dig att du mäter blodtryck på en person, resultatet blir 72 mmHg. Frågan som intresserar dig är: Hör den här personen till gruppen vanliga friska, eller hör hon till en grupp sjuka som i genomsnitt har lägre blodtyck än friska?
+
+**Kommenterat exempel**
+
+Nollhypotes:
+
+Personen hör till populationen med fördelningen blodtryck ~N(90, 10)
+
+Alternativhypotes:
+
+Personen hör till en population med lägre blodtryck än N(90, 10)
+
+**1.1** Är det ett ensidigt eller tvåsidigt test vi har formulerat? (_ensidigt sid._ 330-331, 460, 325-326 _tvåsidigt sid._ 389, 327-330, 325-326)
+
+Val av signifikansnivå: Vi väljer α = 0.05.
+
+Det innebär att vi förkastar nollhypotesen om p-värdet är lägre än 0.05.
+
+Genom att välja α = 0.05 har vi accepterat att om vi gör upprepade tester där nollhypotesen verkligen är sann så kommer vi förkasta nollhypotesen av misstag i 5% av testen på lång sikt.
+
+**1.2** Är det ett typ I eller ett typ II fel att förkasta en sann nollhypotes?
+
+(_Typ 1 sid._ 325, 322-323, 343, _Typ 2 sid._ 322-323, 343-346)
+
+Val av statistisk test: z- test
+
+Titta på figuren ”ensidigt test” nedan. y är andelen av befolkningen som har ett blodtryck nära x. Arean under hela kurvan är 1. Det betyder att alla i befolkningen har ett blodtryck, alla möjliga utfall ryms under kurvan.
+
+Antag att nollhypotesen stämmer, personen du mätt hör till populationen N(90, 10). Hur vanligt är det att man får resultatet 72 eller lägre av en slump? Svaret är arean under kurvan till vänster om bt= 72. Den arean är det samma som z-testets p-värde.
+
+**1.3** Beräkna blå area i figuren ”Ensidigt test” med R
+
+**1.4** Återskapa min figur ”Ensidigt test” nedan med R
+
+Tips: polygon(cord.x,cord.y,col='skyblue')
+
+Ytterligare tips: Bläddra fram till 2.5
+
+**1.5**Blodtrycket bt72 eller lägre verkar förekomma i mindre del av befolkningen än 0.05, vår valda signifikansnivå. Ska vi behålla eller förkasta nollhypotesen?
+
+**Tvåsidigt test**
+
+Det är vanligt att man måste formulera en tvåsidig alternativhypotes. När jag drar ett värde så ska jag fråga mig ”hur vanligt är det att hitta en person som avviker så här mycket från medlet, uppåt eller neråt”. Det är lika vanligt att avvika 18 mmHg neråt eller mer som 18 mmHg uppåt eller mer. För att beräkna p-värdet för ett tvåsidigt test måste du summera de två blåa areorna i figuren ”tvåsidigt test” nedan. Använd samma mätning igen, 72 mmHg, med en ny alternativhypotes:
+
+Nollhypotes:
+
+Personen hör till populationen med fördelningen blodtryck ~N(90, 10)
+
+Alternativhypotes:
+
+Personen hör till en population med högre eller lägre blodtryck än N(90, 10)
+
+**1.6** Kan nollhypotesen förkastas med α = 0.05 som signifikansnivå?
+
+
+**Uttrycka skillnader med variation**
+
+Att göra ett experiment handlar ofta om att mäta en skillnad. Blev det skillnad i blodtryck mellan kontrollgruppen och gruppen som medicinerats? Ja, alltid blir det någon skillnad mellan två stickprov, även om medicineringen inte påverkar blodtrycket som du hade hoppats. Det blir skillnad av en slump. 3 mmHg blev det kanske. Är det mycket eller lite? Är 10 kg stor skillnad? Kanske för gäddor, kanske inte för människor. För att besvara frågan måste vi byta ut enheten mmHg, kg, cm och istället uttrycka skillnaden med variation som enhet. Övningen som följer ska illustrera detta.
+
+Undersök formeln för z-testet.
+
+z = (X-µ)/σ
+
+X är din uppmätta variabel
+
+µ är medelvärdet för populationen som X hör till enligt nollhypotesen
+
+σ är populationens standardavvikelse
+
+Många variabler X kan vara normalfördelade med olika medel och standardavikelser. Siffrorna blir olika beroende på vilken enhet man använder.
+
+Titta på variablerna X1 och X2 och deras fördelningar, beskriver de samma fenomen i naturen?
+
+X1 ~N( µ = 25 , σ = 2.5)
+
+X2 ~N(µ= 10, σ = 1)
+
+Javisst, det är längden på en sorts fiskar, X1 är längden angivet i cm, X2 är längden angivet i tum.
+
+z är en speciell variabel med fördelningen z ~N(0, 1), med andra ord, z är normalfördelad med medelvärdet 0 och standardavvikelsen 1. För att rita upp z ~N(0,1) i R kan du använda
+
+curve(dnorm(x, 0, 1), from= -4, to=4)
+
+För att transformera en variabel till z behöver du genomföra stegen A och B nedan:
+
+A. subtrahera µ från varje X - då blir medelvärdet noll
+
+exempel: X = 80 mmHg; X ~N(90, 10)
+
+80 mmHg – 90 mmHg = - 10 mmHg
+
+bt<- seq(-50, 120, 1)
+
+y = dnorm(bt, 90, 10)
+
+plot(bt, y, type="l", xlim=c(-50, 120), main="transformera så µ blir noll")
+
+lines(bt -90, y, xlim=c(-50, 120), col="blue")
+
+B. Dividera varje X med standardavvikelsen – då blir skalan på x-axeln standardavvikese.
+
+Fortsättning på samma exempel: -10 mmHg / 10mmHg = -1
+
+**1.7** Rita en graf som illustrerar transformeringen av x-axelns skala från mmHg till standardavvikelse
+
+**2\. Ett stickprov jämförs med en känd population**
+
+Du har i inlämningsuppgift 3 dragit upprepade stickprov ur populationer med olika underliggande fördelningar. Du har även läst om central limit theorem att samplingsfördelningen går mot normalfördelning om stickprovet är stort nog.
+
+Du vill testa om ett stickprov är draget ur en population med känt medelvärde och standardavvikelse. Rätt metod är z-test, men formeln ser något annorlunda ut än i 1.
+
+z = ( - µ)/ (σ**/√n**)
+
+är stickprovets medelvärde
+
+µ är populationens medelvärde
+
+n är stickprovets storlek
+
+√n är kvadratroten ur stickprovets storlek
+
+**2.1** Varför dividerar man populationens standardavvikelse med kvadratroten ur stickprovets storlek. Du behöver inte härleda matematiken exakt, men anknyt gärna till resultaten i inlämningsuppgift 3 i ditt svar.
+
+Kvalitetskontrollavdelningen på en fabrik testar regelbundet en produkt. Medelvikten är 31.2 g med standardavvikelsen 0.4 g. En morgon vägs ett slumpmässigt stickprov av produkten, 16 exemplar, och stickprovets medelvikt uppmäts till 31.38 g.
+
+Är produkten tyngre än normalt denna morgon?
+
+**2.2** Ange nollhypotes och mothypotes
+
+**2.3** välj signifikansnivå
+
+**2.4** Beräkna z-test i R.
+
+Du kan transformera X till z med formeln z = ( - µ)/ (σ/√n) och sedan slå upp p värdet med pnorm(). Så måste du göra om du bara har en z-tabell att tillgå för att komma åt p-värdet.
+
+Det går även utmärkt att låta R göra transformeringen genom att fylla i värdet i g i pnorm() tillsammans med medel och standardavvikelse i gram.
+
+Ange om nollhypotesen förkastas eller behålls.
+
+**2.5** Rita en graf som visar stickprovens förväntade fördelning och arean som motsvarar p-värdet. Välj själv om du vill rita grafen med X (otransformerade värden i gram) eller med z (transformerade värden, standardavvikelsen som enhet) som x-axel.
+
+**2.6** Formulera resultatet från 2.4 utan att använda statistisk terminologi.
+
+**3\. Ett stickprov jämförs med en population, standardavvikelsen är okänd**
+
+Ofta har man inte tillgång till standardavvikelsen för populationen. Då blir man tvungen att göra en uppskattning av populationens standardavvikelse σ, utifrån stickprovets standardavvikelse som betecknas SD eller s. Istället för z-test ska man använda t-test
+
+**t** = ( - µ)/ (**SD**/√n)
+
+Det finns en enda z-fördelning, men t-fördelningar finns det många, och de ser olika ut beroende på antal frihetsgrader. Frihetsgrader är antalet mätningar, n, minus antalet parametrar som skattas, i vårt fall är det en parameter, medelvärdet.
+
+**3.1** Rita följande graf:
+
+x<-seq(-4, 4, 0.1)
+
+y<- dnorm(x)
+
+plot(x,y, type="l" )
+
+lines(x, dt(x, 10), col="red" )
+
+lines(x, dt(x, 3), col="blue" )
+
+abline(v=qnorm(0.025))
+
+abline(v=qt(0.025, 10), col="red")
+
+abline(v=qt(0.025, 3), col="blue")
+
+Grafen visar en z-fördelning och två t-fördelningar. En med 3 frihetsgrader och en med 10.
+
+Jag har ritat en linje som utesluter 0.025 av arean åt vänster för varje fördelning.
+
+**3.2** Viket/vilka av följande påståenden stämmer?
+
+Arean till vänster om abline motsvarar p-värdet för ensidiga test.
+
+Det krävs en större avvikelse från µ för att t-testen ska falla ut som signifikanta än för z-testet.
+
+**Hur ditt experiment påverkas av stickprovets storlek**
+
+Koden nedan printar en tabell över t-värden vid olika antal frihetsgrader och slutligen för z. Alla värden utesluter arean 0.025 åt vänster. Det gör att tabellen passar för tvåsidiga test med signifikansnivån α = 0.05.
+
+x<-c( 1:20, 100, 200, 300)
+
+qt(0.025, x)
+
+qnorm(0.025)
+
+**3.3** Kommentera skillnaden mellan z och t. När kan det vara rimligt att approximera t-testet med ett z-test?
+
+Tips:
+
+Kanske kan den här grafen vara illustrativ?
+
+x<-c( 1:20, 100, 200, 300)
+
+y <- qt(0.025, x)
+
+plot(y)
+
+lines(y)
+
+abline(h=qnorm(0.025))
+
+En grupp av 32 kvinnor under speciell bevakning av mödravården föder barn. Medelvikten var 3200 g och standardavvikelsen 800 g. Avviker medelvikten från den normala medelvikten 3600 g?
+
+**3.4** Ange nollhypotes och mothypotes
+
+**3.5** Välj signifikansnivå
+
+**3.6** Beräkna t-test i R och ange p-värde samt om nollhypotesen förkastas eller behålls
+
+Det finns inbyggda funktioner i R för att räkna ttest. Här skulle jag vilja att du räknar ut t från formeln **t** = ( - µ)/ (**SD**/√n)
+
+och slår upp i t-tabellen pt() hur ovanligt det beräknade t-värdet är.
+
+Fundera på om du ska göra ett ensidigt eller tvåsidigt test.
+
+Om du vill kan du beräkna ett z-test också och jämföra resultatet.
+
+**3.7** Formulera resultatet utan att använda statistisk terminologi.
+
+**4\. Jämföra två stickprov gruppvis, populationens standardavvikelse är okänd**
+
+**4.1** Skapa en data.frameGruppvis.Vikt med följande data.
+
+| vikt | grupp |
+| --- | --- |
+| 90  | A   |
+| 91  | A   |
+| 93  | A   |
+| 106 | A   |
+| 97  | A   |
+| 108 | A   |
+| 97  | A   |
+| 105 | A   |
+| 106 | A   |
+| 103 | A   |
+| 105 | A   |
+| 96  | A   |
+| 105 | A   |
+| 95  | A   |
+| 90  | A   |
+| 101 | A   |
+| 90  | B   |
+| 91  | B   |
+| 85  | B   |
+| 99  | B   |
+| 93  | B   |
+| 104 | B   |
+| 89  | B   |
+| 103 | B   |
+| 102 | B   |
+| 95  | B   |
+| 103 | B   |
+| 95  | B   |
+| 105 | B   |
+| 87  | B   |
+| 86  | B   |
+| 101 | B   |
+
+I den första räkneuppgiften tänker vi oss att grupperna A och B är slumpmässigt utvalda ur två definierade populationer, kanske utifrån livsstil eller någon diagnos, som vi vill undersöka med avseende på vikt. Sammanlagt deltar 32 personer i studien. Har grupperna olika medelvikt?
+
+**4.2 Ange nollhypotes och mothypotes**
+
+**4.3Välj signifikansnivå**
+
+**4.4 Beräkna t-test, tex så här**
+
+attach(Gruppvis.Vikt)
+
+t.test(vikt ~ grupp, var.equal = TRUE) #vikt ~grupp ska läsas: vikt förklarat av faktorn grupp
+
+Tolka resultattabellen. Ange p-värde, samt om nollhypotesen förkastas eller behålls.
+
+**Faktaruta Welch t-test**
+
+Lägg märke till argumentet:
+
+var.equal = FALSE
+
+Om du väljer var.equal = FALSE så räknar R det klassiska ttest som är standardvalet i många statistikmjukvaror. Om du utelämnar var.equal = FALSE så kommer R beräkna det så kallade Welch t-test som utgår ifrån att variationen kan vara olika i de två grupperna och justerar antalet frihetsgrader därefter. Det låter märkligt. Hur skulle variationen kunna vara olika om nollhypotesen säger att båda stickprov är tagna ur samma population? Lind ger ett praktiskt exempel där man ska avgöra om två två olika sorters pappersservetter absorberar olika mycket vatten. Den dyrare sorten har jämnare kvalitet, alltså lägre variation. (sid. 367)
+
+Testa gärna att beräkna Welch t-test och jämför resultaten:
+
+t.test(vikt ~ grupp) # ger samma som t.test(vikt ~ grupp, var.equal = FALSE)
+
+Lägg märke till df, degreesoffreedom, som har justerats i Welch t-test.
+
+**4.5 Formulera resultatet utan att använda statistisk terminologi**
+
+**Jämföra två stickprov där mätningarna hör ihop parvis, populationens standardavvikelse är okänd**
+
+En kraftfullare experimentell design när man arbetar med människor, där den individuella variationen kan vara mycket stor, är att göra upprepade mätningar på samma individ. (Explain the difference between dependent and independent samples. sid 373-376) Tänk dig att mätningen A är gjord före en tre veckors kontrollerad diet, och mätningen B är gjord efter. Nu tänker vi oss alltså att data från 4.1 avser mätningar på bara 16 personer.
+
+Nollhypotes:
+
+Det är krångligt att få till en stram formulering av nollhypotesen utan att skriva en formel.
+
+Nollhypotesen för ett gruppvis test lyder: ”Stickproven A och B är dragna ur samma population” Det kan illustreras med formeln µA = µB. Lägg märke till att det inte är samma sak som A = B. Även om stickproven är dragna ur samma population så tror vi inte att de ska ge exakt samma medelvärde. Det är den underliggande populationen som vi tror har samma medelvärde hela tiden.
+
+I ett parvis test beräknas inte gruppernas medelvärde. Istället mäter man förändringen för varje individ, d, därefter beräknar man medelvärdet för alla förändringar, . Med hjälp av t-testet kan vi ställa i relation till variationen i mätningarna. δ är den underliggande populationens sanna skillnad.
+
+t = (- δ) /( SD/√n)
+
+Oftast är nollhypotesen att δ = 0
+
+Så här brukar formeln se ut:
+
+t = /( SD/√n)
+
+n är i vårt exempel 16. Vid parvis test är n inte antalet mätningar, utan antalet par. Antalet frihetsgrader är n-1, antalet par minus ett.
+
+Den goda strategin att räkna parvis t-test är att skapa en data.frame som visar att mätningarna hör ihop, enligt mottot en rad ett case, en kolumn en variabel.
+
+**4.6 Läs in data från 4.1 formatterat på ett nytt sätt**
+
+Parvis.Vikt<- read.table("clipboard", header=T)
+
+| A   | B   |
+| --- | --- |
+| 90  | 90  |
+| 91  | 91  |
+| 93  | 85  |
+| 106 | 99  |
+| 97  | 93  |
+| 108 | 104 |
+| 97  | 89  |
+| 105 | 103 |
+| 106 | 102 |
+| 103 | 95  |
+| 105 | 103 |
+| 96  | 95  |
+| 105 | 105 |
+| 95  | 87  |
+| 90  | 86  |
+| 101 | 101 |
+
+Det är även möjligt att återanvända din gamla data.frame genom att lägga till paried=T. Normalt känner man ju till i förväg om data hör ihop parvis eller ej och jag rekommenderar att ni använder strukturen i data.frame.
+
+t.test(vikt ~ grupp, paired = T)
+
+**4.7 Beräkna parvis ttest, kommentera varför resultatet blir annorlunda än vid gruppvis test**
+
+**5\. Illustrera typ I och typ II fel**
+
+Läs om typ I och typ II fel (Typ 1 sid. 325, 322-323, 343, Typ 2 sid. 322-323, 343-346). Koden nedan ritar upp två normalfördelningar. Tänk er att de är stickprovsfördelningar och att man kan använda z-fördelningen därför att stickprovets storlek är stort. Den röda fördelningen, µ1, gäller om nollhypotesen är sann. Den blåa fördelningen, µ2, gäller om alternativhypotesen är sann. I den röda fördelningen har jag ritat in arean 0.025.
+
+x=seq(50,140,length=200)
+
+y1=dnorm(x,80, 10)
+
+plot(x,y1,type='l',lwd=2,col='red')
+
+y2=dnorm(x,110, 10)
+
+lines(x,y2,type='l',lwd=2,col='blue')
+
+cord.x1 <- c((round(qnorm(0.975, 80, 10, lower.tail=T))),seq((round(qnorm(0.975, 80, 10, lower.tail=T))), 120,1),120)
+
+cord.y1 <- c(0,dnorm(seq((round(qnorm(0.975, 80, 10, lower.tail=T))), 120, 1), 80, 10),0)
+
+polygon(cord.x1,cord.y1,col='red')
+
+Gör ett antal nya grafer:
+
+**5.1** Rita in en abline som visar gränsen utanför vilken du skulle förkasta nollhypotesen µ1 = µ2 till förmån för alternativhypotesen µ1 < µ2. Signifikansnivån ska vara 0.05
+
+**5.2** Rita in två abline som visar gränserna utanför vilka du skulle förkasta nollhypotesen µ1 = µ2 till förmån för alternativhypotesen µ1 ≠ µ2. Signifikansnivån ska vara 0.05
+
+**5.3** Gör en ny 5.2 där du färgar arean som visar risken att förkasta en sann nollhypotes. Typ I felet.
+
+**5.4** Gör en ny 5.2. Vi tänker oss att alternativhypotesen, µ2, är sann. Färga en area som visar risken att behålla en falsk nollhypotes. Typ II felet, kallas även β. Beräkna och ange β.
+
+**5.5** Gör en ny 5.4 där du även färgar arean som visar sannolikheten att förkasta en falsk nollhypotes. Tips: Det ska bli 1 – β. Detta kallas även statistisk kraft, statistical power.
+
+**6\. Ickeparametriskt alternativ till t-test**
+
+Data inspirerade av:
+
+DIFFERENTIATING DENGUE VIRUS INFECTION FROM SCRUB TYPHUS IN THAI ADULTS WITH FEVER
+
+GEORGE WATT et al 2003
+
+“\[…\] simple criteria to differentiatescrub typhus from dengue infection are needed \[…\],particularly where rapid confirmatory diagnostic tests are notavailable.”
+
+Vita blodkroppar har räknats hos två patientgrupper som är svåra att skilja åt: Denguefewer, respektive scrub typhus. Använd en hypotestest-strategi för att avgöra om antal vita blodceller/ mm3 kan ligga till grund för differentiell diagnos av scrub typhus och denguefewer. Man kan **inte** anta att mätvärdena är normalfördelade. Välj α = 0.05.
+
+| count | diagnosis |
+| --- | --- |
+| 3000 | dengue |
+| 3200 | dengue |
+| 3500 | dengue |
+| 5068 | dengue |
+| 5679 | dengue |
+| 6200 | dengue |
+| 6300 | dengue |
+| 7020 | dengue |
+| 4400 | scrub |
+| 4500 | scrub |
+| 5900 | scrub |
+| 6839 | scrub |
+| 7561 | scrub |
+| 9047 | scrub |
+| 12300 | scrub |
+| 14000 | scrub |
+
+**6.1 Läs in data och beräkna ett two sample Wilcoxon test (ISwR 5.4, sid 103)**
+
+**6.2 Hur formuleras nollhypotes och alternativhypotes i Wicoxontestet?**
+
+**6.3Visar testet att en enkel räkning av vita blodkroppar kan stå till grund för differentiell diagnos?**
+
+Om man hade kunnat argumentera trovärdigt för att data i föregående uppgift var normalfördelade hade man kunnat genomföra ett vanligt gruppvis t-test.
+
+**  
+6.4Ange nollhypotes och mothypotes för t-testet**
+
+**6.5Beräkna testet, tolka resultatet, formulera slutsats.**
+
+**6.6 Varför blir det olika resultat i 6.3 och 6.5?**
+
+**7\. Konfidensintervall som metod för hypotestestning**
+
+I resultattabellerna som t.test skapat finner du även konfidensintervall. Att beräkna konfidensintervall är mycket användbart. Både för att illustrera hur bra en skattning av en parameter är och för resonemang som liknar hypotestest.
+
+I ett parvis t-test undersöker vi om δ ≠ 0.
+
+Vi kan skatta δ med och titta efter om intervallet ± 95% CI.
+
+Ni har mött tekniken hur man räknar konfidensintervall för medelvärden i inlämningsuppgift 3, i beräkning av ett blodtryckintervall som gäller 95% av befolkningen. Här vill jag poängtera att beräkningen blir lite olika beroende på om populationens standardavvikelse σ, är känd, eller om man,måste skatta den utifrån ett stickprovs standardavvikelse, SD. Var vänlig slå upp formlerna i en bok. När σ är känd går det att använda z,
+
+qnorm(c(0.025, 0.975)) #Beräknar z värdet för ett 95% konfidensintervall, lägg märke till hur det utesluter 2,5% av varje extrem del av fördelningen.
+
+När måste beräkna t-värde ska du hålla reda på frihetsgraderna
+
+qt(c(0.025, 0.975 , df)
+
+Exempel:
+
+Vikten på fem försöksdjur har mätts till = 28.3, SD = 3.1
+
+Beräkna ett 95% konfidensintervall för medlet:
+
+Antal frihetsgrader 5-1 = 4 fem mätningar, en skattning
+
+round(28.3 +( qt(c(0.025, 0.975), 4)) \* 3.1/sqrt(5) , 1) #kolla upp formeln i bok
+
+\[1\] 24.5 32.1
+
+**7.1** En däckfabrikör mäter 10 däck som körts 50000 miles. I medel är 0.32 tum av mönstret kvar, med standardavvikelsen 0.09 tum. Beräkna ett 95% konfidensintervall kring medlet.
+
+**7.2** Kan fabrikören påstå att 0.30 tum brukar vara kvar efter 50000 miles utifrån mätningen?
+
+**7.3** Tio slumpmässigt utvalda individer har ett medelkolesterolvärde på 5,4 mmol/l och standardavvikelsen 0.5 mmol/l. Beräkna ett 95% konfidensintervall för medlet.
+
+**8 ANOVA – ANalysisOfVariance**
+
+I denna övning nöjer vi oss med en enklare användning av ANOVA. Vi betraktar ANOVA som ett sätt att hantera flera samtidiga t-test.
+
+Nollhypotes: µ1= µ2 = µ3
+
+Alternativhypotes: µ1= µ2 = µ3 gäller ej
+
+Vi ställer upp ett antal stickprov och kontrollerar om någon grupp avviker från de andra.
+
+**8.1Läs in datasetet med blodtryck hos tre olika grupper av försökspersoner och beräkna ANOVA** med funktionen anova(lm(blodtryck ~behandling))
+
+| blodtryck | behandling |
+| --- | --- |
+| 77  | kontroll |
+| 77  | kontroll |
+| 78  | kontroll |
+| 80  | kontroll |
+| 81  | kontroll |
+| 89  | kontroll |
+| 90  | kontroll |
+| 96  | kontroll |
+| 99  | kontroll |
+| 107 | kontroll |
+| 59  | medicinering |
+| 66  | medicinering |
+| 70  | medicinering |
+| 73  | medicinering |
+| 76  | medicinering |
+| 77  | medicinering |
+| 78  | medicinering |
+| 81  | medicinering |
+| 81  | medicinering |
+| 91  | medicinering |
+| 64  | träning |
+| 66  | träning |
+| 69  | träning |
+| 72  | träning |
+| 73  | träning |
+| 74  | träning |
+| 74  | träning |
+| 80  | träning |
+| 84  | träning |
+| 99  | träning |
+
+**8.2**ANOVA räknar ut ett F värde utifrån hur variationen är fördelad över matrisen. Sök efter värdetPr(>F) i tabellen, sannolikheten att få värdet F eller större under förutsättning att nollhypotesen stämmer. Om denna sannolikhet är mindre än ditt α-värde kan du förkasta nollhypotesen.
+
+**8.3Välj ett sätt att visualisera data. Du kan låta dig inspireras av IswR s 134.**

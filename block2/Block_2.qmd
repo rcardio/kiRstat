@@ -4,11 +4,6 @@ author: "Statistiska Metoder med R"
 format: pdf
 echo: true
 ---
-
-Inlämningsuppgift block 2 – funktioner, objekt, grafer, import av data
-
-Statistiska Metoder med R
-
 Försättsblad
 
 Grupp 10:
@@ -27,15 +22,15 @@ Namn
 
 Namn
 
-1.  Session
+**1.**  Session
 
-1.1. Kolla vilka paket och objekt som är laddade just nu med funktionen search() och klipp in här:
+**1.1.** Kolla vilka paket och objekt som är laddade just nu med funktionen search() och klipp in här:
 
 ```{r}
 search()
 ```
 
-1.2. Slå upp hjälptexten om funktionen search() så här ?search()
+**1.2.** Slå upp hjälptexten om funktionen search() så här ?search()
 
 ```{r}
 ?search()
@@ -47,25 +42,25 @@ läs om paketet base så här ?base
 ?base
 ```
 
-2.  Matematiska operationer
+**2.**  Matematiska operationer
 
 Använd R som räknare. Klistra din kod och vad R svarar här
 
-2.1. Arean på en kvadrat med sidan 5 cm.
+**2.1.** Arean på en kvadrat med sidan 5 cm.
 
 ```{r}
 area_kvadrat = 5^2
 print(area_kvadrat)
 ```
 
-2.2. Volymen på en kub med sidan 5 cm.
+**2.2.** Volymen på en kub med sidan 5 cm.
 
 ```{r}
 volym_kub = 5^3
 print(volym_kub)
 ```
 
-2.3. Arean på en cirkel med radien 5 cm. Använd en inbyggd variabel som heter pi.
+**2.3.** Arean på en cirkel med radien 5 cm. Använd en inbyggd variabel som heter pi.
 
 ```{r}
 area_cirkel = pi * 5^2
@@ -74,11 +69,11 @@ print(area_cirkel)
 
 (formeln framgår i uppgift 3.1)
 
-3.  Function
+**3.**  Function
 
 Om du utför samma beräkning ofta kanske du vill skapa en egen funktion i R
 
-3.1. klistra in följande kod i R
+**3.1.** klistra in följande kod i R
 
 CircleArea \<- function(radius) {
 
@@ -92,17 +87,17 @@ CircleArea <- function(radius) {
 }
 ```
 
-3.2. Vad gör koden ovan?
+**3.2.** Vad gör koden ovan?
 
 Den automatiserar beräkning av arean av en cirkel till funktionen CircleArea() som tar emot ett argument, radius som är radien i cm.
 
-3.3. Använd din nya funktion CircleArea() för att beräkna arean på en cirkel med radien 15 cm
+**3.3.** Använd din nya funktion CircleArea() för att beräkna arean på en cirkel med radien 15 cm
 
 ```{r}
 CircleArea(15)
 ```
 
-3.4. Skapa en vector med radierna 1,2,3,4,5,6,7,8,9 med koden radier \<- c(1:9)
+**3.4.** Skapa en vector med radierna 1,2,3,4,5,6,7,8,9 med koden radier \<- c(1:9)
 
 Skapa en vector med namn areor beräknade utifrån radierna i vectorn radier. Använd din funktion CircleArea()
 
@@ -111,15 +106,15 @@ radier <- c(1:9)
 areor <- c(CircleArea(radier))
 ```
 
-3.5. Klistra in resultatet av funktionen plot(radier, areor)
+**3.5.** Klistra in resultatet av funktionen plot(radier, areor)
 
 ```{r}
 plot(radier, areor)
 ```
 
-3.6. Bind ihop punkterna i grafen med en linje Tips: sid 8 ISwR
+**3.6.** Bind ihop punkterna i grafen med en linje Tips: sid 8 ISwR
 
-3.7. Klistra in den resulterande grafen här. Kopiera grafen med copy paste, eller i Windows RGui klicka på kamerasymbolen uppe till höger, eller välj File/copy to the clipboard.
+**3.7.** Klistra in den resulterande grafen här. Kopiera grafen med copy paste, eller i Windows RGui klicka på kamerasymbolen uppe till höger, eller välj File/copy to the clipboard.
 
 ```{r}
 plot(radier, areor)
@@ -134,23 +129,23 @@ Jag använder i den här texten den engelska stavningen för objekt-typerna:
 
 vector, matrix, factor, list, data.frame
 
-4.  vector
+**4.**  vector
 
 Skapa ett antal vector med några olika funktioner
 
-4.1. fyll V1 med talen 1, 2, 3, 3, 6, 17, 23, 12, 32, använd funktionen c()
+**4.1.** fyll V1 med talen 1, 2, 3, 3, 6, 17, 23, 12, 32, använd funktionen c()
 
 ```{r}
 V1 <- c(1, 2, 3, 3, 6, 17, 23, 12, 32)
 ```
 
-4.2. fyll V2 med alla jämna tal mellan 2 och 100. Använd funktionen seq()
+**4.2.** fyll V2 med alla jämna tal mellan 2 och 100. Använd funktionen seq()
 
 ```{r}
 V2 <- seq(2, 100, by = 2)
 ```
 
-4.3. fyll V3 med alla heltal mellan 1 och 250. Använd funktionen :
+**4.3.** fyll V3 med alla heltal mellan 1 och 250. Använd funktionen :
 
 ```{r}
 V3 <- 1:250
@@ -158,13 +153,13 @@ V3 <- 1:250
 
 Tips: Vad händer som du skriver 1:250 i prompten?1:250
 
-4.4. fyll kundlista_radnamn med orden namn, adress, email, telefonnummer. Varför är det viktigt att använda ” ” eller ’ ’ här? Använd funktionen c()
+**4.4.** fyll kundlista_radnamn med orden namn, adress, email, telefonnummer. Varför är det viktigt att använda ” ” eller ’ ’ här? Använd funktionen c()
 
 ```{r}
 kundlista_radnamn <- c("namn", "adress", "email", "telefonnummer")
 ```
 
-4.5. fyll kunder200 med orden i kundlista_radnamn 200 gånger efter varandra med funktionen rep()
+**4.5.** fyll kunder200 med orden i kundlista_radnamn 200 gånger efter varandra med funktionen rep()
 
 ```{r}
 kunder200 <- rep(kundlista_radnamn, 200)
@@ -176,13 +171,13 @@ Kopiera endast in några rader här som svar när du printar ut kunder200
 head(kunder200, 12)
 ```
 
-4.6. plocka ut andra ordet i kunder200 med hjälp av funktionen \[\]
+**4.6.** plocka ut andra ordet i kunder200 med hjälp av funktionen \[\]
 
 ```{r}
 kunder200[2]
 ```
 
-4.7. letters är en inbyggt vector. Printa ut innehållet i letters.
+**4.7.** letters är en inbyggt vector. Printa ut innehållet i letters.
 
 ```{r}
 letters
@@ -190,13 +185,13 @@ letters
 
 (Printa ut betyder i detta fall att R skriver i prompten)
 
-4.8. kontrollera hur många bokstäver som ingår i letters med funktionen length()
+**4.8.** kontrollera hur många bokstäver som ingår i letters med funktionen length()
 
 ```{r}
 length(letters)
 ```
 
-4.9. printa bokstäverna c, d, e. använd letters och funktionerna \[\] och :
+**4.9.** printa bokstäverna c, d, e. använd letters och funktionerna \[\] och :
 
 ```{r}
 letters[3:5]
@@ -204,23 +199,23 @@ letters[3:5]
 
 Tips: Vad händer om du skriver letters\[20:23\]
 
-4.10. Fyll abc med bokstäverna a, b, c , a, b, c, a, b, c. använd letters och funktionerna rep(), \[\]
+**4.10.** Fyll abc med bokstäverna a, b, c , a, b, c, a, b, c. använd letters och funktionerna rep(), \[\]
 
 ```{r}
 abc <- rep(letters[1:3], 3)
 ```
 
-4.11. Undersök funktionen sample(letters, 5, replace=TRUE) Skriv kort här vad sample() gör.
+**4.11.** Undersök funktionen sample(letters, 5, replace=TRUE) Skriv kort här vad sample() gör.
 
 Sample tar ett slumpässigt urval ur vektorn, i detta fall 5, och med utbytbarhet.
 
 du kan även läsa ?sample()
 
-4.12. testa att köra sample(letters, 5, replace=TRUE) igen. Fick du samma resultat? Nej
+**4.12.** testa att köra sample(letters, 5, replace=TRUE) igen. Fick du samma resultat? Nej
 
 Om man behöver kontrollera vilka slumptal R genererar, till exempel som när man samarbetar om en inlämningsuppgift och behöver kunna reproducera resultaten, så kan man ställa in ett så kallat seed med funktionen set.seed()
 
-4.13. Använd ditt gruppnummer som seed och kör koden nedan. I exemplet använder jag gruppnumret 17, som du får byta ut mot ditt eget. Grupp A = 1, grupp B = 2, etc.
+**4.13.** Använd ditt gruppnummer som seed och kör koden nedan. I exemplet använder jag gruppnumret 17, som du får byta ut mot ditt eget. Grupp A = 1, grupp B = 2, etc.
 
 gruppnummer \<- 17
 
@@ -253,9 +248,9 @@ sample(letters, 5, replace = TRUE)
 
 Jag kommer att påminna er att ställa in seed i vissa inlämningsuppgifterna eftersom den rättande läraren ska kunna reproducera era beräkningar snabbt och fullständigt.
 
-5.  Att söka igenom och justera data.
+**5.**  Att söka igenom och justera data.
 
-5.1. Simulera 400 tärningskast i en vector, kalla den dice
+**5.1.** Simulera 400 tärningskast i en vector, kalla den dice
 
 Använd funktionerna sample() och : (Tips: vad sägs om 1:6)
 
@@ -271,13 +266,13 @@ kast_utfall[12] <- 66
 
 Tips: sid 21 ISwR, Indexing
 
-5.2 Så här kan du använda en graf för att söka igenom data efter avvikande observationer. Skapa en plot av dice med kommandot plot() Notera att en observation avviker från de övriga, och dessutom har ett värde utanför de möjliga utfallen. Klistra in grafen här.
+**5.2** Så här kan du använda en graf för att söka igenom data efter avvikande observationer. Skapa en plot av dice med kommandot plot() Notera att en observation avviker från de övriga, och dessutom har ett värde utanför de möjliga utfallen. Klistra in grafen här.
 
 ```{r}
 plot(kast_utfall)
 ```
 
-5.3. Vad händer om du skriver
+**5.3.** Vad händer om du skriver
 
 which(dice \> 6)
 
@@ -285,7 +280,7 @@ which(dice \> 6)
 which(kast_utfall > 6)
 ```
 
-5.4.Byt ut den avvikande observationen mot NA
+**5.4.** Byt ut den avvikande observationen mot NA
 
 ```{r}
 kast_utfall[which(kast_utfall > 6)] <- NA
@@ -293,9 +288,9 @@ kast_utfall[which(kast_utfall > 6)] <- NA
 
 Tips: du kan hantera tecknen NA precis som en siffra
 
-6.  matrix
+**6.**  matrix
 
-6.1. använd funktionen is.vector() för att kontrollera om V1 som du skapat är en vector
+**6.1.** använd funktionen is.vector() för att kontrollera om V1 som du skapat är en vector
 
 Tips. Det borde se ut så här:
 
@@ -307,7 +302,7 @@ Tips. Det borde se ut så här:
 is.vector(V1)
 ```
 
-6.2. Skapa en matrix, M1, genom att kopiera V1 och tilldela M1 dimensionerna 3x3 med funktionen dim() Tips: sid 17 ISwR
+**6.2.** Skapa en matrix, M1, genom att kopiera V1 och tilldela M1 dimensionerna 3x3 med funktionen dim() Tips: sid 17 ISwR
 
 printa ut M1
 
@@ -319,7 +314,7 @@ dim(M1) <- c(3,3)
 M1
 ```
 
-6.3. testa med funktionen is.vector() om M1 är en vector och
+**6.3.** testa med funktionen is.vector() om M1 är en vector och
 
 testa med funktionen is.matrix() om M1 är en matrix
 
@@ -328,13 +323,13 @@ is.vector(M1)
 is.matrix(M1)
 ```
 
-6.4.vad sker om du ger kommandot t(M1)
+**6.4.** vad sker om du ger kommandot t(M1)
 
 ```{r}
 t(M1)
 ```
 
-7.  factor
+**7.**  factor
 
 På sid 18 (ISwR) står beskrivet hur man kan skapa en faktor, en typ av variabel som kan hantera kategoriska variabler. Här ska du få ett alternativt sätt att skapa faktorer.
 
@@ -344,7 +339,7 @@ börja med set.seed(gruppnummer)
 set.seed(10)
 ```
 
-7.1 fyll inkomsttagare med 50 tecken, en slumpmässig följd av bokstäverna k, l, m.
+**7.1** fyll inkomsttagare med 50 tecken, en slumpmässig följd av bokstäverna k, l, m.
 
 ```{r}
 string <- c("k", "l", "m")
@@ -355,7 +350,7 @@ k, l och m är någon godtycklig kategorisk variabel.
 
 använd funktionerna sample() och : och \[\]
 
-7.2 vad händer om du glömmer skriva replace=TRUE
+**7.2** vad händer om du glömmer skriva replace=TRUE
 
 ```{r}
 #inkomsttagare <- sample(string, 50, replace = FALSE)
@@ -372,19 +367,19 @@ print(inkomsttagare)
 ```
 printa inkomstagare
 
-7.3 använd is.vector() för att testa om inkomsttagare är en vector
+**7.3** använd is.vector() för att testa om inkomsttagare är en vector
 
 ```{r}
 is.vector(inkomsttagare)
 ```
 
-7.4 fyll inkomsttagare_faktor med hjälp av funktionen factor(inkomsttagare)
+**7.4** fyll inkomsttagare_faktor med hjälp av funktionen factor(inkomsttagare)
 
 ```{r}
 inkomsttagare_faktor <- factor(inkomsttagare)
 ```
 
-7.5 använd is.vector() för att testa om inkomsttagare_faktor är en vector och
+**7.5** använd is.vector() för att testa om inkomsttagare_faktor är en vector och
 
 använd is.factor()för att testa om inkomsttagare_faktor är en factor
 
@@ -393,7 +388,7 @@ is.vector(inkomsttagare_faktor)
 is.factor(inkomsttagare_faktor)
 ```
 
-7.6 printa inkomsttagare_faktor
+**7.6** printa inkomsttagare_faktor
 
 lägg märke till ”levels”
 
@@ -401,11 +396,11 @@ lägg märke till ”levels”
 inkomsttagare_faktor
 ```
 
-8.  list
+**8.**  list
 
 Objekttypen list kan innehålla en blandning av olika objekttyper
 
-8.1 skapa en lista av några vector och matrix du har skapat
+**8.1** skapa en lista av några vector och matrix du har skapat
 
 enlista \<- list(V1, M1, inkomsttagare)
 
@@ -417,13 +412,13 @@ enlista <- list(V1, M1, inkomsttagare)
 enlista
 ```
 
-9.  data.frame
+**9.**  data.frame
 
 data.frame är ett lämpligt format att lagra data i R
 
 du kan tänka dig en data.frame som en tabell med numrerade rader där varje rad motsvarar ett case (till exempel en försöksperson) och varje kolumn motsvarar en uppmätt variabel (blodtryck, ålder, vikt för att ge tre exempel). En data.frame är som en list av flera vector. En vector för varje variabel. Om du skapar en data.frame av en vector som består av ord så kommer den stöpas om till factor. R kommer tolka den som en kategorisk variabel.
 
-9.1 skapa en data.frame, D1, av din matrix M1 (tips: sid 20 ISwR)D1
+**9.1** skapa en data.frame, D1, av din matrix M1 (tips: sid 20 ISwR)D1
 
 printa ut D1 och notera att kolumn och radnamn tillkommit och ersatt noteringen \[,1\] \[,2\] osv
 
@@ -432,13 +427,15 @@ D1 <- data.frame(M1)
 D1
 ```
 
-9.3 printa ut första kolumnen av D1 med hjälp av \$
+(9.2 fattas?)
+
+**9.3** printa ut första kolumnen av D1 med hjälp av \$
 
 ```{r}
 D1$X1
 ```
 
-9.4 printa ut första raden av D1 med hjälp av \[\]
+**9.4** printa ut första raden av D1 med hjälp av \[\]
 
 Editera en data.frame med fix()
 
@@ -447,7 +444,7 @@ D1[1]
 fix(D1)
 ```
 
-9.5 Öppna din data.frame D1 med fix() och lägg till en kolumn med värdena: låg, låg, hög
+**9.5** Öppna din data.frame D1 med fix() och lägg till en kolumn med värdena: låg, låg, hög
 
 klicka på kolumn-namnet för dina nya värden och notera vilken variabeltyp R har valt.
 
@@ -455,7 +452,7 @@ Pröva att göra samma sak med matrix M1, dva öppna med fix() och lägga till l
 
 Alla datatyper i M1 konverteras till characters då man adderar en kolumn med "låg", "låg", "hög". I data frame blir det en kolumn med characters och resten av kolumnerna bibehåller sina data types.
 
-9.6 Använd funktionen copy i word samt funktionen read.table(”clipboard”, header=T) för att skapa en data.frame D2 av tabellen nedan. Tips: sid 53 ISwR
+**9.6** Använd funktionen copy i word samt funktionen read.table(”clipboard”, header=T) för att skapa en data.frame D2 av tabellen nedan. Tips: sid 53 ISwR
 
 Har du Mac? Då ser kommandot lite annorlunda ut. Pröva:
 
@@ -473,7 +470,7 @@ längd <- c(190, 170, 165, 170, 190)
 D2 <- data.frame(kön, vikt, längd)
 ```
 
-9.7 Använd funktionen plot() och \$ för att rita ett spridningsdiagram med data från D2 i uppgift 9.6 Vikt på y-axeln och längd på x-axeln. Tips om \$: sid 21 ISwR
+**9.7** Använd funktionen plot() och \$ för att rita ett spridningsdiagram med data från D2 i uppgift 9.6 Vikt på y-axeln och längd på x-axeln. Tips om \$: sid 21 ISwR
 
 Lägg märke till att tabellen du importerat till D2 har samma format som den färdiga data.frame
 
@@ -489,7 +486,7 @@ I följande tabell har en en kategorisk variabel (treatment) delats upp i en kol
 plot(y=D2$vikt, x=D2$längd)
 ```
 
-9.8 Formattera om tabellen på lämpligt sätt och importera den med read.table() till d3
+**9.8** Formattera om tabellen på lämpligt sätt och importera den med read.table() till d3
 
 Blodtryck för 30 försökspersoner har slumpmässigt delats in i tre grupper: kontroll, medicinering, träning
 
@@ -504,7 +501,7 @@ D3 <- data.frame(kontroll, medicinering, träning)
 D3
 ```
 
-9.9 Skapa slumpmässiga, avrundade blodtrycksvärden till 10 personer per grupp genom att köra koden nedan. Först ska du använda set.seed()
+**9.9** Skapa slumpmässiga, avrundade blodtrycksvärden till 10 personer per grupp genom att köra koden nedan. Först ska du använda set.seed()
 
 set.seed(gruppnummer)
 
@@ -526,7 +523,7 @@ print(bt_medicin)
 print(bt_springa)
 ```
 
-9.10 Kommentera: Vad gör funktionen round()?
+**9.10** Kommentera: Vad gör funktionen round()?
 
 Blodtryck rapporteras alltid som heltal. Undersök round() genom att skapa en en serie slumptal som i bt_kontroll, men med 2 decimaler.
 
@@ -537,7 +534,7 @@ test <- round(runif(10, min = 100, max = 150), 2)
 print(test)
 ```
 
-9.11 lägg samman alla observationer i en vector, bt
+**9.11** lägg samman alla observationer i en vector, bt
 
 bt \<- c(bt_kontroll, bt_medicin, bt_springa)
 
@@ -548,7 +545,7 @@ bt <- c(bt_kontroll, bt_medicin, bt_springa)
 print(bt)
 ```
 
-9.12 nu skapar vi en vector med treatment som passar med vector bt
+**9.12** nu skapar vi en vector med treatment som passar med vector bt
 
 treatment \<- rep(c("kontroll", "medicin", "springa"), c(10,10,10))
 
@@ -565,8 +562,9 @@ btdataframe <- data.frame(treatment, bt)
 
 print(btdataframe)
 ```
+(9.13 fattas?)
 
-9.14 Slutligen ska pröva strategin att importera data från en txt fil till en data.frame
+**9.14** Slutligen ska pröva strategin att importera data från en txt fil till en data.frame
 
 Ladda ner filen learningstrategies.txt – ligger under ”Filer-\>course_inlämningsuppgift” i Canvas
 
@@ -594,7 +592,7 @@ Det ska räcka med ”learningstrategies.txt”
 learningstrategies <- read.table("C:/Users/jacob/Desktop/statistikRkurs/kiRstat/block2/learningstrategies.txt", header = TRUE)
 ```
 
-9.15 Printa en översikt av innehållet i learningstrategies och klistra in här
+**9.15** Printa en översikt av innehållet i learningstrategies och klistra in här
 
 summary(learningstrategies)
 
@@ -602,7 +600,7 @@ summary(learningstrategies)
 summary(learningstrategies)
 ```
 
-9.16 Printa och klistra in ett histogram med hist()
+**9.16** Printa och klistra in ett histogram med hist()
 
 Titta på uttycket i hist() nedan.
 
@@ -620,7 +618,7 @@ hist(learningstrategies$words[learningstrategies$strategy == "intentional"\])
 
 Sammanfattningsvis: I learningsstrategies words kolumn, subsetta de rader som lyder "intentional" i kolumnen strategy.
 
-9.17 Boxplot
+**9.17** Boxplot
 
 Använd attach(learningstrategies) så att namnen i learningstrategies blir tillgängliga för R.
 
