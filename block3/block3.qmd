@@ -86,26 +86,31 @@ table(stroke$sex, stroke$dgn)
 ```{r}
 barplot(table(stroke$sex))
 ```
+Stapeldiagram lämpar sig för att skildra antal i kategoriska variabler.
 
 **2.2** histogram
 ```{r}
 hist(stroke$age)
 ```
+Histogram lämpar sig för att skildra antal i en kontinuerlig variabel och utvärdera fördelning i en population.
 
 **2.3** box plot
 ```{r}
 boxplot(stroke$obsmonths ~ stroke$dead)
 ```
+Box plot lämpar sig bäst för att skildra intravariabel spridning i jämförelse med andra variabler.
 
 **2.4** spridningsdiagram (scatter plot)
 ```{r}
 plot(stroke$died, stroke$age)
 ```
+Lämpar sig bäst för att utröna kluster, mönster och samband mellan två kontinuerliga variabler.
 
 **2.5** cirkeldiagram
 ```{r}
 pie(table(stroke$dgn))
 ```
+Lämpar sig bäst för att utvärdera antalet inom olika kategoriska variabler, i jämförelse till varandra och helheten.
 
 Förutom att redovisa din kod och klippa in den resulterande grafen vill jag att du kommenterar kort vad varje typ av graf är lämplig för att illustrera.
 
