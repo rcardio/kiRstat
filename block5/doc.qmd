@@ -42,11 +42,8 @@ Den kommer i följande format:
 ## Hypotes
 Min hypotes är att ålder, tidigare kirurgi, organavstötning är de variabler som ökar risken mest för att predicera död i de som erhåller hjärttransplantation.
 
-En numerisk och en grafisk bearbetning av datat som besvarar en fråga/frågor du formuerat.
-Dels i form av kommenterad r-kod, dels i form av output, siffor och bild/bilder.
-
 # Dependencies
-Beroende på följande paket:
+Detta arbete bygger på följande paket:
 ```{r}
 library(tidyverse)
 library(survival)
@@ -101,7 +98,7 @@ data <- data %>%
 
 glimpse(data)
 ```
-Mismatch och hla.a2 förblev "int". Jag konverterar de manuellt.
+reject och hla.a2 förblev "int". Jag konverterar de manuellt.
 ```{r}
 data <- data %>%
   mutate(across(c(reject, hla.a2), as.logical))
