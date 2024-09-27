@@ -120,19 +120,63 @@ I så fall får du godkänt. Men om du svarat lika enkelt på alla frågor 2.1-5
 
 **3.1** Rita plot(table(dgn)) men lägg till något flärdfullt som bakgrundsfärg, titelrad, tjockare staplar.
 
+```{r}
+# Create a table of counts for the categorical variable 'dgn'
+dgn_counts <- table(stroke$dgn)
+
+# Create a bar plot with enhanced formatting
+barplot(
+  dgn_counts,
+  main = "Distribution of Diagnoses",
+  xlab = "Diagnosis",
+  ylab = "Frequency",
+  col = "skyblue",
+  border = "white"
+)
+```
+
 **Välj, beräkna och motivera val av centralmått och spridningsmått för dessa variabler:**
 
+
 **4.1** age i stroke
+```{r}
+age_median <- median(stroke$age)
+age_iqr <- IQR(stroke$age)
+age_lower <- quantile(stroke$age, 0.25)
+age_upper <- quantile(stroke$age, 0.75)
+
+hist(stroke$age)
+
+abline(v = age_median)
+abline(v = age_lower)
+abline(v = age_upper)
+```
+Här valde jag att beräkna median och IQR på grund av vänsterskewed data.
 
 **4.2** dgn i stroke
+```{r}
+plot(stroke$dgn)
+
+print(paste("Mode av stroke$dgn är", names(sort(table(stroke$dgn), decreasing = TRUE)[1])))
+```
+Bästa centralmåttet av kategoriska variabler är mode.
 
 **4.3** rnorm(10000)
 
 Om du vet vad rnorm betyder – testa annars ?rnorm() – så är det lätt att argumentera för det rätta svaret. Men jag vill påminna här att du även kan titta på data innan du bestämmer dig. Kanske dessa metoder kan vara till nytta:
-
 hist(rnorm(10000))
-
 boxplot(rnorm(10000))
+
+```{r}
+data <- rnorm(10000)
+hist(data)
+
+abline(v = mean(data))
+abline(v = mean(data) - sd(data))
+abline(v = mean(data) + sd(data))
+```
+
+I en normalfördelad data hamnar medelvärdet centralt och spridningen kan karaktäriseras standardavvikelser. I detta fall skildrar jag detta med en vertikal linje 1 SD från medelvärdet.
 
 **Fördelningar**
 
