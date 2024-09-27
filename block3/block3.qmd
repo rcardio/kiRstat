@@ -201,10 +201,12 @@ Det är bra att vid ett tillfälle beräkna sannolikheterna för varje utfall f�
 n <- 2
 p <- 0.7
 
+# Beräkna sannolikheterna
 prob_0 <- dbinom(0, n, p)
 prob_1 <- dbinom(1, n, p)
 prob_2 <- dbinom(2, n, p)
 
+# print
 print(paste("P(x=0) =", prob_0))
 print(paste("P(x=1) =", prob_1))
 print(paste("P(x=2) =", prob_2))
@@ -221,23 +223,49 @@ prob_2 <- choose(n, 2) * p^2 * (1 - p)^(n - 2)
 probs <- c(prob_0, prob_1, prob_2)
 
 # Plot
-barplot(probs, names.arg = 0:2, main = "Sannolikhet" xlab = "Number of Patients Recovered", ylab = "Probability", col = "lightblue", border = "white", ylim = c(0,0.75))
+barplot(probs, names.arg = 0:2, main = "Sannolikhet", xlab = "Number of Patients Recovered", ylab = "Probability", col = "lightblue", border = "white", ylim = c(0,0.75))
 ```
 
-För att lösa uppgiften kan du behöva komplettera texten i ISwR med en annan text om binomialfördelningen. Om du har läst tidigare räcker det kanske att läsa igenom formler som jag klippt ur wikipedia binomial distribution:
-
-Probability mass function
-
-
-for _k_ = 0, 1, 2, ..., _n_, where
+För att lösa uppgiften kan du behöva komplettera texten i ISwR med en annan text om binomialfördelningen. Om du har läst tidigare räcker det kanske att läsa igenom formler som jag klippt ur wikipedia binomial distribution
 
 **5.3** Sex patienter får samma behandling. Sannolikheten att tillfriskna har visat sig vara 80%.
 
 Rita ett stapeldiagram som visar sannolikheten för varje tänkbart utfall från noll patienter tillfrisknar till sex patienter tillfrisknar. Använd dbinom().
 
+```{r}
+# Skriver funktion då det kan itereras
+prob <- function(n, p) {
+  # Initiate df
+  prob <- data.frame(amount = integer(), probability = numeric())
+  # for loop, for every iteration calculate and append
+  for (i in 1:n) {
+    prob <- rbind(prob, data.frame(amount = i, probability = dbinom(i, n, p)))
+  }
+  return(prob)
+}
+
+# Beräkna sannolikheter
+probabilities <- prob(6, 0.8)
+
+# Plot
+barplot(probabilities$probability, names.arg = probabilities$amount, ylim = c(0, 0.5))
+```
+
 **5.4** Beräkna sannolikheten att exakt två patienter tillfrisknar.
+```{r}
+# Det finns redan en funktion skriven
+
+frisk_2 <- prob(2, 0.8)
+
+print(paste("Sannolikheten att 2 patienter tillfrisknar är", frisk_2[2,2]*100,"%"))
+```
 
 **5.5** Beräkna sannolikheten att minst 5 patienter tillfrisknar.
+```{r}
+frisk_2 <- prob(5, 0.8)
+
+print(paste("Sannolikheten att 5 patienter tillfrisknar är", round(frisk_2[5,2]*100),"%"))
+```
 
 **Normalfördelnigen**
 
