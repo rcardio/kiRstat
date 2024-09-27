@@ -1,8 +1,9 @@
 ---
-title: Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala gränssnittssatsen
-author: Statistiska Metoder med R
-format: docx
-echo: True
+title: "Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala gränssnittssatsen"
+author: "Statistiska Metoder med R"
+format:
+  docx
+echo: true
 ---
 
 Försättsblad
@@ -223,7 +224,7 @@ prob_2 <- choose(n, 2) * p^2 * (1 - p)^(n - 2)
 probs <- c(prob_0, prob_1, prob_2)
 
 # Plot
-barplot(probs, names.arg = 0:2, main = "Sannolikhet", xlab = "Number of Patients Recovered", ylab = "Probability", col = "lightblue", border = "white", ylim = c(0,0.75))
+barplot(probs, names.arg = 0:2, main = "Sannolikhet", xlab = "Antal tillfrisknade", ylab = "Sannolikhet", col = "lightblue", border = "white", ylim = c(0,0.75))
 ```
 
 För att lösa uppgiften kan du behöva komplettera texten i ISwR med en annan text om binomialfördelningen. Om du har läst tidigare räcker det kanske att läsa igenom formler som jag klippt ur wikipedia binomial distribution
@@ -277,29 +278,72 @@ x <- seq(-4,4,0.05)
 
 plot (dnorm(x))
 
+
 eller
 
 curve(dnorm(x), from= -4, to=4)
 
 _Funktionen dnorm(x), som i density function, returnerar sannolikheten att i ett experiment få ett ufallet x eller mycket nära x_
 
+```{r}
+x <- seq(-4,4,0.05)
+
+plot (dnorm(x))
+```
+
 **6.2** Rita en graf som beskriver fördelningen av blodtryck i mmHg för människor. Variabeln ska vara normalfödelad med medelvärdet 90 och standardavvikelsen 10.
+
+```{r}
+hist(rnorm(100, mean=90, sd=10))
+```
 
 _Funktionen pnorm(x), som i probability function, returnerar sannolikheten att i ett experiment få ett utfall x eller lägre än x._
 
 Använd pnorm() för att beräkna andelen människor i världsbefolkningen som har ett blodtryck:
 
+```{r}
+# Skriver en funktion då repeterande uppgift
+blodtryck <- function(limit, mean, sd, hi = TRUE) {
+  prob <- pnorm(limit, mean = mean, sd = sd)
+  if (hi)
+    prob <- (1-prob)*100
+  else
+    prob <- prob*100
+
+  return(prob)
+}
+```
+
 **6.3** 80 eller lägre
+```{r}
+print(blodtryck(80, mean=90, sd=10, hi = FALSE))
+```
 
 **6.4** 100 eller lägre
+```{r}
+print(blodtryck(100, mean=90, sd=10, hi = FALSE))
+```
 
 **6.5** högre än 100
+```{r}
+print(blodtryck(100, mean=90, sd=10, hi = TRUE))
+```
 
 **6.6** högre än 90 (stanna till här och tänk efter om resultatet för 6.6 verkar stämma, kommentera)
+```{r}
+print(blodtryck(90, mean=90, sd=10, hi = TRUE))
+```
+Eftersom medelvärdet av normalfördelning ska vara 90 bör då 50% vara över 90.
 
 **6.7** Av 50000 svenska män födda 1980, hur många är 190 cm eller längre? Utgå ifrån medellängd 180 cm och standardavvikelse 7 cm. (Värdena är påhittade.)
+```{r}
+print((1-pnorm(190, mean = 180, sd = 7)))
+```
 
 **6.8** Hur många män födda 1980 är mellan 180 och 190 cm långa?
+```{r}
+print(pnorm(190, mean = 180, sd = 7) - pnorm(180, mean = 180, sd = 7))
+```
 
 _Funktionen qnorm(), som i quantile function, kan du använda om du söker ett värde för en normalfördelad variabel som är högre eller lika med en viss andel av alla observationer._
 
@@ -310,10 +354,28 @@ Nedan har jag använt qnorm() för att beräkna det intervall av blodtryck som i
 \[1\] 70.40036 109.59964
 
 **6.9** Justera min kod så att R returnerar blodtrycksintervallet angett i heltal.
+```{r}
+round(qnorm(c(0.025, 0.975), 90, 10))
+```
 
 Nedan har jag ritat en graf som visar fördelningen av blodtryck i befolkningen. Medel 90 mmHg, standardavvikelse 10. Dessutom har jag ritat in gränserna som innesluter 95% av befolkningen.
 
 **6.10** Återskapa min graf med R kod.
+
+```{r}
+# Definierar punkter
+x <- seq(60, 120, 0.1)
+
+# Beräknar värden
+blodtryck <- dnorm(x, mean = 90, sd = 10)
+
+ci <- round(qnorm(c(0.025, 0.975), 90, 10))
+
+# Plot
+plot(x, blodtryck, type = "l", xlab = "X", ylab = "dnorm(x,90,10)", lwd = 2)
+segments(ci[1], 0, ci[1], dnorm(ci[1], mean = 90, sd = 10), lwd = 2, lty = 2)
+segments(ci[2], 0, ci[2], dnorm(ci[2], mean = 90, sd = 10), lwd = 2, lty = 2)
+```
 
 Den sortens beräkningar du har gjort med normalfördelningen är mycket vanliga. Därför finns så kallade z-tabeller publicerade. De anger ofta sannolikheten, p , att få ett utfall z eller lägre än z, där z är normalfördelad med medelvärdet 0 och standardavvikelsen 1.
 
@@ -324,8 +386,18 @@ Du kan använda länken nedan om du vill, men lova då att klura på hur adresse
 <https://www.google.com/search?q=z+table>
 
 **6.11** Skriv några rader i R som skapar en kolumn med p-värden, från z= -4 till z = 0
-
 Välj ett antal värdesiffror som du tycker verkar vara vanligt i z-tabeller. Vi bryr oss inte om smärre avvikelser i avrundning.
+
+```{r}
+# Z och P värden
+z <- seq(-4, 0, by = 1)
+p_values <- pnorm(z)
+
+# Skapa df
+p_values_df <- data.frame(z = z, p_values = round(p_values, 4))
+
+print(p_values_df)
+```
 
 **Varför är normalfördelningen användbar?**
 
