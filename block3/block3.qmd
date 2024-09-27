@@ -134,9 +134,9 @@ dgn_counts <- table(stroke$dgn)
 # Create a bar plot with enhanced formatting
 barplot(
   dgn_counts,
-  main = "Distribution of Diagnoses",
-  xlab = "Diagnosis",
-  ylab = "Frequency",
+  main = "Fördelning av diagnoser",
+  xlab = "Diagnoser",
+  ylab = "Frekvens",
   col = "skyblue",
   border = "white"
 )
@@ -200,7 +200,7 @@ Två patienter får en behandling som har sannolikheten P(bota) = 0,7 att bota s
 
 ```{r}
 x <- 0:2
-plot(x, dbinom(x, 2, 0.7), type = "h", col = "red", lwd=10, main = "Binomial distribution")
+plot(x, dbinom(x, 2, 0.7), type = "h", col = "red", lwd=10, main = "Binomial fördelning")
 ```
 
 Det är bra att vid ett tillfälle beräkna sannolikheterna för varje utfall för hand. Formeln finner du på sid 57 i ISwR. Här följer formeln med värdena för utfallet 0 tillfrisknar ifyllda.
