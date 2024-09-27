@@ -187,20 +187,42 @@ För att ha glädje av avsnittet fördelningar i inlämningsuppgiften måste du 
 Passar för att beskriva fördelningar där man upprepar ett experimentet ett antal gånger (i R heter det size) Experimentet kan få två olika utfall, dessa brukar betecknas success och failure. Sannolikheten för success (i R heter det prob) förblir densamma vid varje nytt försök.
 
 Exempel:
-
 Två patienter får en behandling som har sannolikheten P(bota) = 0,7 att bota sjukdomen.
 
 **5.1** Använd min kod nedan för att med binomialfördelningen beräkna och plotta sannolikheterna att 0 eller 1 eller 2 patienter botas. Lägg till en lämplig titel till grafen.
 
+```{r}
 x <- 0:2
-
-plot(x, dbinom(x, 2, 0.7), type = "h", col = "red", lwd=10)
+plot(x, dbinom(x, 2, 0.7), type = "h", col = "red", lwd=10, main = "Binomial distribution")
+```
 
 Det är bra att vid ett tillfälle beräkna sannolikheterna för varje utfall för hand. Formeln finner du på sid 57 i ISwR. Här följer formeln med värdena för utfallet 0 tillfrisknar ifyllda.
+```{r}
+n <- 2
+p <- 0.7
 
-P(x=0) =( ) 0,7<sup>0</sup> \* 0,3<sup>2</sup> =
+prob_0 <- dbinom(0, n, p)
+prob_1 <- dbinom(1, n, p)
+prob_2 <- dbinom(2, n, p)
+
+print(paste("P(x=0) =", prob_0))
+print(paste("P(x=1) =", prob_1))
+print(paste("P(x=2) =", prob_2))
+```
 
 **5.2** Beräkna i R med formeln ovan sannolikheterna att 0 eller 1 eller 2 patienter botas, rita en graf. Använd funktionen choose(). Blev det samma resultat som i 5.1?
+```{r}
+# Beräkna sannolikheterna med ovan formel
+prob_0 <- choose(n, 0) * p^0 * (1 - p)^(n - 0)
+prob_1 <- choose(n, 1) * p^1 * (1 - p)^(n - 1)
+prob_2 <- choose(n, 2) * p^2 * (1 - p)^(n - 2)
+
+# Skapa en vektor
+probs <- c(prob_0, prob_1, prob_2)
+
+# Plot
+barplot(probs, names.arg = 0:2, main = "Sannolikhet" xlab = "Number of Patients Recovered", ylab = "Probability", col = "lightblue", border = "white", ylim = c(0,0.75))
+```
 
 För att lösa uppgiften kan du behöva komplettera texten i ISwR med en annan text om binomialfördelningen. Om du har läst tidigare räcker det kanske att läsa igenom formler som jag klippt ur wikipedia binomial distribution:
 
