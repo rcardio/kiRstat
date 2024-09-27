@@ -2,7 +2,13 @@
 title: "Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala gränssnittssatsen"
 author: "Statistiska Metoder med R"
 format:
-  docx
+  pdf:
+    keep_tex: true
+editor_options:
+  chunk_output_type: console
+knit:
+  incremental: true
+cache: true
 echo: true
 ---
 
@@ -412,81 +418,136 @@ Jämförelsen haltar något, eftersom vi inte har med koncepten recessiv och dom
 **7.1** Rita upp binomialfördelningen för att singla slant två ggr med följande kod.
 
 Rita in en normalfördelning i samma graf.
-
+```{r}
 x <- 0:2
-
 plot(x, dbinom(x, 2, 0.5), type = "h", col = "blue", lwd=4, ylim= c(0,0.6))
+```
 
 **7.2** Rita nu upp en variabel som styrs av 8 underliggande oberoende faktorer
-
 Rita in en normalfördelning i samma graf.
+```{r}
+# Variabler
+n <- 10000
+factors <- replicate(8, rnorm(n))
+variable <- rowSums(factors)
+
+# Plot the histogram of the variable
+hist(variable, breaks = 50, probability = TRUE)
+
+# Overlay a normal distribution curve
+x <- seq(min(variable), max(variable), length = 100)
+y <- dnorm(x, mean = mean(variable), sd = sd(variable))
+lines(x, y, col = "red", lwd = 2)
+```
 
 **7.3** Rita nu upp en variabel som styrs av 30 underliggande oberoende faktorer
-
 Rita in en normalfördelning i samma graf.
+```{r}
+# Variabler
+n <- 10000
+factors <- replicate(30, rnorm(n))
+variable <- rowSums(factors)
+
+# Plot
+hist(variable, breaks = 50, probability = TRUE)
+
+# Overlay
+x <- seq(min(variable), max(variable), length = 100)
+y <- dnorm(x, mean = mean(variable), sd = sd(variable))
+lines(x, y, col = "red", lwd = 2)
+```
 
 **7.4** Kommentera resultatet av undersökningen 7.1 till 7.3
+Även summerade variabler beroende på 8 och 30 faktorer uppvisar normal distribution, oavsett fördelning på underliggande faktorer.
+Det innebär även att vi kan anta att variabler som påverkas av underliggande faktorer uppvisar normal distribution, oavsett dess underliggande distribution.
 
-Frivillig uppgift: Det finns ett elegant sätt att välja standardavvikelse för normalfördelningen som du ritar in över binomialfördelningen i graferna. Hur kan man beräkna ett lämpligt värde? Tips: Läs Lind formel \[6-5\]
+**Frivillig uppgift**: Det finns ett elegant sätt att välja standardavvikelse för normalfördelningen som du ritar in över binomialfördelningen i graferna. Hur kan man beräkna ett lämpligt värde? Tips: Läs Lind formel \[6-5\]
 
 **Centrala gränsvärdessatsen (Central Limit theorem)**
 
 Att annat skäl till att normalfördelningen är så användbar inom statistiken följer av centrala gränsvärdessatsen. Tänk att du drar många lika stora stickprov ur en population och varje gång beräknar stickprovets medelvärde. Vi ska nu undersöka hur stickprovets medelvärde fördelas.
 
 **8.1** Skapa ett antal fördelningar NORM, UNIF, SKEV med koden nedan
-
 Använd gruppens nummer som seed, tex grupp A = seed(1), grpp B, seed(2)
 
-set.seed(400)
-
+```{r}
+set.seed(10)
 NORM <- rnorm(10000)
-
 UNIF <- runif(10000)
-
 SKEV <- rep(1:100, 1:100)
+```
 
 **8.2** Rita histogram över fördelningarna och beräkna medelvärde och standardavvikelse (även om man kan ifrågasätta iden att räkna medel och standardavvikelse för SKEV)
+```{r}
+hist(NORM)
+abline(v = mean(NORM), col = "red", lwd = 2, lty = 2)
+abline(v = mean(NORM) + sd(NORM), col = "blue", lwd = 2, lty = 2)
+abline(v = mean(NORM) - sd(NORM), col = "blue", lwd = 2, lty = 2)
+
+hist(UNIF)
+abline(v = mean(UNIF), col = "red", lwd = 2, lty = 2)
+abline(v = mean(UNIF) + sd(UNIF), col = "blue", lwd = 2, lty = 2)
+abline(v = mean(UNIF) - sd(UNIF), col = "blue", lwd = 2, lty = 2) 
+
+hist(SKEV)
+abline(v = mean(SKEV), col = "red", lwd = 2, lty = 2)
+abline(v = mean(SKEV) + sd(SKEV), col = "blue", lwd = 2, lty = 2)
+abline(v = mean(SKEV) - sd(SKEV), col = "blue", lwd = 2, lty = 2)
+```
 
 **8.3** Börja arbeta med NORM. Tag ur NORM 1000 stickprov med återläggning av storleken n=3, tag sedan 1000 stickprov av storleken n=6, tag slutligen 1000 stickprov av storleken n=300.
+```{r}
+# Funktion för plotting
+plot_sample_means <- function(data, sample_sizes, num_samples) {
+  # Nestad funktion för att beräkna medelvärde och sd
+  sample_means <- function(data, sample_size, num_samples) {
+    means <- numeric(num_samples)
+    for (i in 1:num_samples) {
+      sample <- sample(data, sample_size, replace = TRUE)
+      means[i] <- mean(sample)
+    }
+    return(means)
+  }
+  
+  par(mfrow = c(length(sample_sizes), 1))  # Set up the plotting area
+  
+  for (n in sample_sizes) {
+    means <- sample_means(data, n, num_samples)
+    hist(means, main = paste("(n =", n, ")"))
+    abline(v = mean(means), col = "red", lwd = 2, lty = 2)
+    abline(v = mean(means) + sd(means), col = "blue", lwd = 2, lty = 2)
+    abline(v = mean(means) - sd(means), col = "blue", lwd = 2, lty = 2)
+  }
+  
+  par(mfrow = c(1, 1))  # Reset plotting area
+}
+
+sample_sizes <- c(3, 6, 300)
+num_samples <- 1000
+```
+```{r, fig.height=10, fig.width=10}
+plot_sample_means(NORM, sample_sizes, num_samples)
+```
 
 Beräkna medelvärde för varje stickprov och rita histogram över medelvärdena (du har gjort en empirisk samplingsfördelning). Beräkna medelvärdet och standardavvikelsen för dina samplingsfördelningar n=3, n=6, n=300 .
 
 **8.4** Upprepa uppgift 8.3 med UNIF och till sist med SKEV
 
+```{r, fig.height=10, fig.width=10}
+plot_sample_means(UNIF, sample_sizes, num_samples)
+```
+
+```{r, fig.height=10, fig.width=10}
+plot_sample_means(SKEV, sample_sizes, num_samples)
+```
+
 **8.5** Formulera centrala gränsvärdessatsen (CGS), citera gärna ur en bok (tex Lind) eller från internet. Kommentera resultatet i 8.2 till 8.4 med hjälp av CGS.
 
-**frivillig** **uppgift** **8.6** Om du har läst statistik tidigare eller vill fördjupa lite här förelår jag att du undersöker standardavvikelsen i populationen NORM <- rnorm(10000) och hur den förhåller sig till standardavvikelserna i de tre samplingsfördelningarna du skapat ur NORM. Kan du hitta en formel som visar förhållandet mellan populationens standardavvikelse och samplingsfördelningens standardavvikelse?
+För NORM (normalfördelning):
+Provmitten är normalfördelade, vilket är väntat eftersom den ursprungliga fördelningen är normal.
 
-**frivillig uppgift 8.7** Är din kod bra eller dålig? Kvalitet kan vara att koden är
+För UNIF (uniform fördelning):
+Trots att den ursprungliga fördelningen är uniform närmar sig fördelningen av provmedelvärdena en normalfördelning när provstorleken ökar. Detta visar på den centrala gränsvärdessatsen, som säger att provmedelvärdena kommer att vara normalfördelade oavsett den ursprungliga fördelningen.
 
-\-lätt att läsa och förstå, rikligt kommenterad
-
-\-kort
-
-\-snabb
-
-Om snabbhet räknas kan du använda system.time() i ditt arbete att optimera kod. Använd koden nedan för att mäta tiden för att räkna x + y på två olika sätt. Pröva att mäta din egen kod med system.time()
-
-fyll x och y med värden, skapa en tom vector z
-
-x <- rnorm(100000)
-
-y<- rnorm(100000)
-
-z <- rep(NA, 100000)
-
-mät hur lång tid det tar att fylla z med x + y på ett omständigt sätt
-
-system.time({
-
-for (i in 1:100000) {
-
-z\[i\] <- x\[i\] + y\[i\]
-
-}
-
-})
-
-mät hur lång tid det tar att räkna x + y på ett snabbt sätt
-
-system.time( k <- x + y )
+För SKEV (skev fördelning):
+Även om den ursprungliga fördelningen är skev blir fördelningen av provmedelvärdena ungefär normal när provstorleken ökar. Detta illustrerar återigen den centrala gränsvärdessatsen, som visar att provmedelvärdena tenderar att vara normalfördelade oavsett skevheten i den ursprungliga fördelningen.
