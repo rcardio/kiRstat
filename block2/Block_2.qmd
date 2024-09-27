@@ -1,7 +1,14 @@
 ---
 title: "Inlämningsuppgift block 2 – funktioner, objekt, grafer, import av data"
 author: "Statistiska Metoder med R"
-format: pdf
+format:
+  pdf:
+    keep_tex: true
+editor_options:
+  chunk_output_type: console
+knit:
+  incremental: true
+cache: true
 echo: true
 ---
 Försättsblad

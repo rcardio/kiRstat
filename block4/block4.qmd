@@ -1,8 +1,15 @@
 ---
 title: Inlämningsuppgift block 4 – hypotestest, konfidensintervall
 author: Statistiska Metoder med R
-format: pdf
-echo: True
+format:
+  pdf:
+    keep_tex: true
+editor_options:
+  chunk_output_type: console
+knit:
+  incremental: true
+cache: true
+echo: true
 ---
 Försättsblad
 
@@ -37,14 +44,15 @@ Alternativhypotes:
 Personen hör till en population med lägre blodtryck än N(90, 10)
 
 **1.1** Är det ett ensidigt eller tvåsidigt test vi har formulerat? (_ensidigt sid._ 330-331, 460, 325-326 _tvåsidigt sid._ 389, 327-330, 325-326)
-
 Val av signifikansnivå: Vi väljer α = 0.05.
-
 Det innebär att vi förkastar nollhypotesen om p-värdet är lägre än 0.05.
-
 Genom att välja α = 0.05 har vi accepterat att om vi gör upprepade tester där nollhypotesen verkligen är sann så kommer vi förkasta nollhypotesen av misstag i 5% av testen på lång sikt.
 
+Svar: Det är ett ensidigt test eftersom alternativhypotesen anger att personen hör till en population med lägre blodtryck än N(90, 10).
+
 **1.2** Är det ett typ I eller ett typ II fel att förkasta en sann nollhypotes?
+
+Svar: Att förkasta en sann nollhypotes är ett typ I fel.
 
 (_Typ 1 sid._ 325, 322-323, 343, _Typ 2 sid._ 322-323, 343-346)
 
@@ -56,28 +64,61 @@ Antag att nollhypotesen stämmer, personen du mätt hör till populationen N(90,
 
 **1.3** Beräkna blå area i figuren ”Ensidigt test” med R
 
+```{r}
+# Given parameters
+mean <- 90
+sd <- 10
+value <- 72
+
+# Calculate the p-value
+p_value <- pnorm(value, mean, sd)
+p_value
+```
+
 **1.4** Återskapa min figur ”Ensidigt test” nedan med R
-
 Tips: polygon(cord.x,cord.y,col='skyblue')
-
 Ytterligare tips: Bläddra fram till 2.5
 
+```{r}
+library(ggplot2)
+
+# Given parameters
+mean <- 90
+sd <- 10
+value <- 72
+
+# Create a sequence of x values
+x <- seq(mean - 4*sd, mean + 4*sd, length=1000)
+# Calculate the density
+y <- dnorm(x, mean, sd)
+# Create a data frame
+data <- data.frame(x, y)
+
+# Plot the normal distribution
+ggplot(data, aes(x, y)) +
+  geom_line() +
+  geom_area(data = subset(data, x <= value), aes(x = x, y = y), fill = "blue", alpha = 0.5) +
+  geom_vline(xintercept = value, linetype = "dashed") +
+  labs(title = "Ensidigt test", x = "Blodtryck", y = "Densitet") +
+  theme_minimal()
+
+```
+
 **1.5**Blodtrycket bt72 eller lägre verkar förekomma i mindre del av befolkningen än 0.05, vår valda signifikansnivå. Ska vi behålla eller förkasta nollhypotesen?
+
+Svar: Eftersom blodtrycket på 72 mmHg är lägre än signifikansnivån på 5%, bör vi förkasta nollhypotesen.
 
 **Tvåsidigt test**
 
 Det är vanligt att man måste formulera en tvåsidig alternativhypotes. När jag drar ett värde så ska jag fråga mig ”hur vanligt är det att hitta en person som avviker så här mycket från medlet, uppåt eller neråt”. Det är lika vanligt att avvika 18 mmHg neråt eller mer som 18 mmHg uppåt eller mer. För att beräkna p-värdet för ett tvåsidigt test måste du summera de två blåa areorna i figuren ”tvåsidigt test” nedan. Använd samma mätning igen, 72 mmHg, med en ny alternativhypotes:
-
 Nollhypotes:
-
 Personen hör till populationen med fördelningen blodtryck ~N(90, 10)
-
 Alternativhypotes:
-
 Personen hör till en population med högre eller lägre blodtryck än N(90, 10)
 
 **1.6** Kan nollhypotesen förkastas med α = 0.05 som signifikansnivå?
 
+Svar: Om p-värdet för det tvåsidiga testet är mindre än signifikansnivån (α = 0,05), förkastar vi nollhypotesen.
 
 **Uttrycka skillnader med variation**
 
@@ -128,6 +169,28 @@ B. Dividera varje X med standardavvikelsen – då blir skalan på x-axeln stand
 Fortsättning på samma exempel: -10 mmHg / 10mmHg = -1
 
 **1.7** Rita en graf som illustrerar transformeringen av x-axelns skala från mmHg till standardavvikelse
+
+```{r}
+# Given parameters
+mean <- 90
+sd <- 10
+
+# Sequence of blood pressure values
+bt <- seq(-50, 120, 1)
+
+# Density of the normal distribution
+y <- dnorm(bt, mean, sd)
+
+# Plot the original distribution
+plot(bt, y, type = "l", xlim = c(-50, 120), main = "Transformera så µ blir noll")
+lines(bt - mean, y, col = "blue")
+
+# Transform the scale to standard deviation
+bt_transformed <- (bt - mean) / sd
+
+# Plot the transformed distribution
+plot(bt_transformed, y, type = "l", xlim = c(-4, 4), main = "Transformera till standardavvikelse")
+```
 
 **2\. Ett stickprov jämförs med en känd population**
 
