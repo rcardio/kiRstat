@@ -1,1 +1,4 @@
-data/jasa.csv
+/.quarto/
+*_cache/
+*_files/
+*.csv

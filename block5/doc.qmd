@@ -1,0 +1,122 @@
+---
+title: Inlämningsuppgift 5 - från data till inferens.
+author: Jacob Widaeus
+subtitle: Statistiska Metoder med R
+format:
+  pdf:
+    keep_tex: true
+editor_options:
+  chunk_output_type: console
+knit:
+  incremental: true
+cache: true
+date: now
+---
+## Bakgrund
+Till detta arbete används ett allmänt tillgängligt dataset som heter "jasa" och inkluderas i paketet [survival](https://cran.r-project.org/web/packages/survival/index.html). Den finns även bifogad som .rda fil som en del i inlämningen.
+
+Jag kommer använda tidyverse till de flesta datamanipulationer och ggplot till grafritningar, då jag använt det tidigare och planerar använda det i framtiden.
+
+Datan beskriver överlevnad av patienter på väntelistan till Standford hjärttransplantationsprogram.
+Den kommer i följande format:
+
+
+| Variable    | Description                    |
+|-------------|--------------------------------|
+| birth.dt    | Birth date                     |
+| accept.dt   | Acceptance into program        |
+| tx.date     | Transplant date                |
+| fu.date     | End of followup                |
+| fustat      | Dead or alive                  |
+| surgery     | Prior bypass surgery           |
+| age         | Age (in years)                 |
+| futime      | Followup time                  |
+| wait.time   | Time before transplant         |
+| transplant  | Transplant indicator           |
+| mismatch    | Mismatch score                 |
+| hla.a2      | Particular type of mismatch    |
+| mscore      | Another mismatch score         |
+| reject      | Rejection occurred             |
+
+
+## Hypotes
+Min hypotes är att ålder, tidigare kirurgi, organavstötning är de variabler som ökar risken mest för att predicera död i de som erhåller hjärttransplantation.
+
+En numerisk och en grafisk bearbetning av datat som besvarar en fråga/frågor du formuerat.
+Dels i form av kommenterad r-kod, dels i form av output, siffor och bild/bilder.
+
+# Dependencies
+Beroende på följande paket:
+```{r}
+library(tidyverse)
+library(survival)
+library(fs)
+```
+
+# Import
+Först importeras datan genom att skapa en funktion för att skapa en ny mapp "data" och spara den i en csv fil där datum inkluderas.
+```{r}
+initiate <- function(output_path) {
+  dir_path <- dirname(output_path)
+  if (!dir_exists(dir_path)) dir_create(dir_path)
+  today_date <- Sys.Date()
+  file_name <- basename(output_path)
+  file_extension <- tools::file_ext(file_name)
+  file_base <- tools::file_path_sans_ext(file_name)
+  new_file_name <- paste0(file_base, "_", today_date, ".", file_extension)
+  new_output_path <- file.path(dir_path, new_file_name)
+  write_csv(jasa, new_output_path)
+}
+```
+Den laddas in med "source" tillsammans som "output_path" definieras.
+
+base_dir definieras som bas-filsökvägen. Denna är datorberoende.
+```{r}
+base_dir <- "C:/Users/oesma/Desktop/kiRstat"
+```
+```{r}
+source(file.path(base_dir, "block5/funs.r"))
+output_path <- file.path(base_dir, paste0("block5/data/jasa_", Sys.Date(), ".csv"))
+```
+Därefter läses .csv filen in, och samtidigt sparas som en .rda fil för redundans - även här med datum. Om den som granskar detta ska återskapa, se till att ha rätt path och använd helst .r filen då .qmd inte alltid samarbetar väl med importfunktioner.
+```{r}
+data <- read.csv(file.path(base_dir, paste0("block5/data/jasa_", Sys.Date(), ".csv")))
+save(data, file = file.path(base_dir, paste0("block5/data/jasa_", Sys.Date(), ".rda")))
+```
+
+# Översikt och städa upp klasser
+Först bildar jag mig en översikt över datan med glimpse()
+```{r}
+glimpse(data)
+```
+Man kan redan nu se att flera av klasserna av variablerna är fel. Jag konverterar datumen till datumklasser, och de binära variablerna som representerar TRUE/FALSE till booleans.
+```{r}
+# Convert character strings that are dates to Date type
+data <- data %>%
+  mutate(across(where(~ is.character(.) && any(!is.na(as.Date(.)))), as.Date))
+
+# Convert all 0 and 1 integer columns to booleans
+data <- data %>%
+  mutate(across(where(~ all(. %in% c(0, 1)) && is.numeric(.)), as.logical))
+
+glimpse(data)
+```
+Mismatch och hla.a2 förblev "int". Jag konverterar de manuellt.
+```{r}
+data <- data %>%
+  mutate(across(c(reject, hla.a2), as.logical))
+```
+Faktorisera alla kolumner som har färre än 10 diskreta variabler.
+```{r}
+data <- data %>%
+  mutate(across(where(~ n_distinct(.) < 10), as.factor))
+
+glimpse(data)
+```
+
+## EDA - Exploratory data analysis
+
+
+
+
+## Reflektion

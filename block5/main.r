@@ -3,7 +3,7 @@ source("block5/funs.r")
 output_path <- "block5/data/jasa.csv"
 initiate(output_path)
 data <- read.csv("block5/data/jasa.csv")
-save(data, file = "block5/data/jasa.rda")
+save(data, file = paste0("block5/data/jasa_", Sys.Date(), ".rda"))
 
 # Attention: If open data "jasa" not available, load it from the .rda file.
 
