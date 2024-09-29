@@ -3,7 +3,7 @@ title: "Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala
 author: "Statistiska Metoder med R"
 format:
   pdf:
-    keep_tex: true
+    keep-tex: true
 editor_options:
   chunk_output_type: console
 knit:

@@ -3,7 +3,7 @@ title: "Inlämningsuppgift block 2 – funktioner, objekt, grafer, import av dat
 author: "Statistiska Metoder med R"
 format:
   pdf:
-    keep_tex: true
+    keep-tex: true
 editor_options:
   chunk_output_type: console
 knit:
@@ -596,7 +596,7 @@ Om filen är sparad i ditt working directory behöver du inte ange filens hela p
 Det ska räcka med ”learningstrategies.txt”
 
 ```{r}
-learningstrategies <- read.table("C:/Users/jacob/Desktop/statistikRkurs/kiRstat/block2/learningstrategies.txt", header = TRUE)
+learningstrategies <- read.table("C:/Users/oesma/Desktop/kiRstat/block2/learningstrategies.txt", header = TRUE)
 ```
 
 **9.15** Printa en översikt av innehållet i learningstrategies och klistra in här
@@ -637,5 +637,5 @@ Klipp in blox-plotten här. Om du har tid och lust kvar, pröva om du kan ändra
 
 ```{r}
 attach(learningstrategies)
-boxplot(words ~strategy, cex.axis = 0.8, las = 2)
+boxplot(words ~strategy, cex.axis = 0.8, las = 2,  xlab = "")
 ```

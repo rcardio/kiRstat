@@ -1,0 +1,1015 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Inlämningsuppgift block 4 -- hypotestest, konfidensintervall},
+  pdfauthor={Statistiska Metoder med R},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Inlämningsuppgift block 4 -- hypotestest, konfidensintervall}
+\author{Statistiska Metoder med R}
+\date{}
+
+\begin{document}
+\maketitle
+
+Försättsblad
+
+Gruppnamn 10
+
+Namn och personnummer på dem som deltagit aktivt:
+
+Jacob Widaeus 950729
+
+Hej
+
+Denna gruppuppgift berör materialet i ISwR kapitel 5 och 7. Du kommer
+att använda R för att genomföra ett antal hypotesttest. Uppgifterna ska
+belysa koncept som förklaras bättre i andra böcker än ISwR.
+Sidhänvisningarna för Lind/Marchal/Wathen är för upplaga 17 i denna
+text. Om du har en annat upplaga får du leta lite grann.
+Sidhänvisningarna gäller Lind om inget annan anges.
+
+Låt mig påminna dig om en viktig sak innan du börjar. Den här kursen är
+inte del av något program som vill bestämma över dig. \textbf{Det är din
+kurs}, och du kan välja vad den ska innehålla. Tanken med
+inlämningsuppgiften är att låta dig utforska hypotesprövning och
+samtidigt lära dig några R-knep. \textbf{Om du fastnar lång tid i något
+som du inte vill fokusera på},skriv en kommentar och gå vidare. Du har
+kanske en gruppkamrat som prioriterat annorlunda, genom att samarbeta
+kan ni få ihop hela uppgiften ändå. Det krävs inte alla rätt --
+viktigast är att lämna in i tid.
+
+polygon() är till exempel en smaksak. Svårt eller lätt? Användbart eller
+ointressant? Det finns ett dokument med tips om polygon som du kan
+använda: tips till inlämningsuppgift 4 polygon.docx
+
+\textbf{1. En enstaka observation jämförd med en känd population}
+
+Du har tidigare beräknat hur stor andel av befolkningen som har
+blodtrycket 80mmHg eller lägre. Förutsättningen för din beräkning är att
+variabeln blodtryck är normalfördelad, samt att du känner till
+medelvärdet och standardavvikelsen för populationen.
+
+Samma typ av beräkning kan användas för ett hypotestest, en beräkning
+som talar om hur ovanlig en observation är, förutsatt att nollhypotesen
+är sann. Tänk dig att du mäter blodtryck på en person, resultatet blir
+72 mmHg. Frågan som intresserar dig är: Hör den här personen till
+gruppen vanliga friska, eller hör hon till en grupp sjuka som i
+genomsnitt har lägre blodtyck än friska?
+
+\textbf{Kommenterat exempel}
+
+Nollhypotes:
+
+Personen hör till populationen med fördelningen blodtryck
+\textasciitilde N(90, 10)
+
+Alternativhypotes:
+
+Personen hör till en population med lägre blodtryck än N(90, 10)
+
+\textbf{1.1} Är det ett ensidigt eller tvåsidigt test vi har formulerat?
+(\emph{ensidigt sid.} 330-331, 460, 325-326 \emph{tvåsidigt sid.} 389,
+327-330, 325-326) Val av signifikansnivå: Vi väljer α = 0.05. Det
+innebär att vi förkastar nollhypotesen om p-värdet är lägre än 0.05.
+Genom att välja α = 0.05 har vi accepterat att om vi gör upprepade
+tester där nollhypotesen verkligen är sann så kommer vi förkasta
+nollhypotesen av misstag i 5\% av testen på lång sikt.
+
+Svar: Det är ett ensidigt test eftersom alternativhypotesen anger att
+personen hör till en population med lägre blodtryck än N(90, 10).
+
+\textbf{1.2} Är det ett typ I eller ett typ II fel att förkasta en sann
+nollhypotes?
+
+Svar: Att förkasta en sann nollhypotes är ett typ I fel.
+
+(\emph{Typ 1 sid.} 325, 322-323, 343, \emph{Typ 2 sid.} 322-323,
+343-346)
+
+Val av statistisk test: z- test
+
+Titta på figuren ''ensidigt test'' nedan. y är andelen av befolkningen
+som har ett blodtryck nära x. Arean under hela kurvan är 1. Det betyder
+att alla i befolkningen har ett blodtryck, alla möjliga utfall ryms
+under kurvan.
+
+Antag att nollhypotesen stämmer, personen du mätt hör till populationen
+N(90, 10). Hur vanligt är det att man får resultatet 72 eller lägre av
+en slump? Svaret är arean under kurvan till vänster om bt= 72. Den arean
+är det samma som z-testets p-värde.
+
+\textbf{1.3} Beräkna blå area i figuren ''Ensidigt test'' med R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Given parameters}
+\NormalTok{mean }\OtherTok{\textless{}{-}} \DecValTok{90}
+\NormalTok{sd }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{value }\OtherTok{\textless{}{-}} \DecValTok{72}
+
+\CommentTok{\# Calculate the p{-}value}
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(value, mean, sd)}
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.03593032
+\end{verbatim}
+
+\textbf{1.4} Återskapa min figur ''Ensidigt test'' nedan med R Tips:
+polygon(cord.x,cord.y,col=`skyblue') Ytterligare tips: Bläddra fram till
+2.5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Given parameters}
+\NormalTok{mean }\OtherTok{\textless{}{-}} \DecValTok{90}
+\NormalTok{sd }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{value }\OtherTok{\textless{}{-}} \DecValTok{72}
+
+\CommentTok{\# Create a sequence of x values}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(mean }\SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{sd, mean }\SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{sd, }\AttributeTok{length=}\DecValTok{1000}\NormalTok{)}
+\CommentTok{\# Calculate the density}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(x, mean, sd)}
+\CommentTok{\# Create a data frame}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x, y)}
+
+\CommentTok{\# Plot the normal distribution}
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(x, y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_area}\NormalTok{(}\AttributeTok{data =} \FunctionTok{subset}\NormalTok{(data, x }\SpecialCharTok{\textless{}=}\NormalTok{ value), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y), }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ value, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Ensidigt test"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Blodtryck"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Densitet"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{block4_files/figure-pdf/unnamed-chunk-2-1.pdf}
+
+\textbf{1.5}Blodtrycket bt72 eller lägre verkar förekomma i mindre del
+av befolkningen än 0.05, vår valda signifikansnivå. Ska vi behålla eller
+förkasta nollhypotesen?
+
+Svar: Eftersom blodtrycket på 72 mmHg är lägre än signifikansnivån på
+5\%, bör vi förkasta nollhypotesen.
+
+\textbf{Tvåsidigt test}
+
+Det är vanligt att man måste formulera en tvåsidig alternativhypotes.
+När jag drar ett värde så ska jag fråga mig ''hur vanligt är det att
+hitta en person som avviker så här mycket från medlet, uppåt eller
+neråt''. Det är lika vanligt att avvika 18 mmHg neråt eller mer som 18
+mmHg uppåt eller mer. För att beräkna p-värdet för ett tvåsidigt test
+måste du summera de två blåa areorna i figuren ''tvåsidigt test'' nedan.
+Använd samma mätning igen, 72 mmHg, med en ny alternativhypotes:
+Nollhypotes: Personen hör till populationen med fördelningen blodtryck
+\textasciitilde N(90, 10) Alternativhypotes: Personen hör till en
+population med högre eller lägre blodtryck än N(90, 10)
+
+\textbf{1.6} Kan nollhypotesen förkastas med α = 0.05 som
+signifikansnivå?
+
+Svar: Om p-värdet för det tvåsidiga testet är mindre än signifikansnivån
+(α = 0,05), förkastar vi nollhypotesen.
+
+\textbf{Uttrycka skillnader med variation}
+
+Att göra ett experiment handlar ofta om att mäta en skillnad. Blev det
+skillnad i blodtryck mellan kontrollgruppen och gruppen som
+medicinerats? Ja, alltid blir det någon skillnad mellan två stickprov,
+även om medicineringen inte påverkar blodtrycket som du hade hoppats.
+Det blir skillnad av en slump. 3 mmHg blev det kanske. Är det mycket
+eller lite? Är 10 kg stor skillnad? Kanske för gäddor, kanske inte för
+människor. För att besvara frågan måste vi byta ut enheten mmHg, kg, cm
+och istället uttrycka skillnaden med variation som enhet. Övningen som
+följer ska illustrera detta.
+
+Undersök formeln för z-testet.
+
+z = (X-µ)/σ
+
+X är din uppmätta variabel
+
+µ är medelvärdet för populationen som X hör till enligt nollhypotesen
+
+σ är populationens standardavvikelse
+
+Många variabler X kan vara normalfördelade med olika medel och
+standardavikelser. Siffrorna blir olika beroende på vilken enhet man
+använder.
+
+Titta på variablerna X1 och X2 och deras fördelningar, beskriver de
+samma fenomen i naturen?
+
+X1 \textasciitilde N( µ = 25 , σ = 2.5)
+
+X2 \textasciitilde N(µ= 10, σ = 1)
+
+Javisst, det är längden på en sorts fiskar, X1 är längden angivet i cm,
+X2 är längden angivet i tum.
+
+z är en speciell variabel med fördelningen z \textasciitilde N(0, 1),
+med andra ord, z är normalfördelad med medelvärdet 0 och
+standardavvikelsen 1. För att rita upp z \textasciitilde N(0,1) i R kan
+du använda
+
+curve(dnorm(x, 0, 1), from= -4, to=4)
+
+För att transformera en variabel till z behöver du genomföra stegen A
+och B nedan:
+
+A. subtrahera µ från varje X - då blir medelvärdet noll
+
+exempel: X = 80 mmHg; X \textasciitilde N(90, 10)
+
+80 mmHg -- 90 mmHg = - 10 mmHg
+
+bt\textless- seq(-50, 120, 1)
+
+y = dnorm(bt, 90, 10)
+
+plot(bt, y, type=``l'', xlim=c(-50, 120), main=``transformera så µ blir
+noll'')
+
+lines(bt -90, y, xlim=c(-50, 120), col=``blue'')
+
+B. Dividera varje X med standardavvikelsen -- då blir skalan på x-axeln
+standardavvikese.
+
+Fortsättning på samma exempel: -10 mmHg / 10mmHg = -1
+
+\textbf{1.7} Rita en graf som illustrerar transformeringen av x-axelns
+skala från mmHg till standardavvikelse
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Given parameters}
+\NormalTok{mean }\OtherTok{\textless{}{-}} \DecValTok{90}
+\NormalTok{sd }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\CommentTok{\# Sequence of blood pressure values}
+\NormalTok{bt }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{50}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Density of the normal distribution}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(bt, mean, sd)}
+
+\CommentTok{\# Plot the original distribution}
+\FunctionTok{plot}\NormalTok{(bt, y, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{50}\NormalTok{, }\DecValTok{120}\NormalTok{), }\AttributeTok{main =} \StringTok{"Transformera så µ blir noll"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(bt }\SpecialCharTok{{-}}\NormalTok{ mean, y, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{block4_files/figure-pdf/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Transform the scale to standard deviation}
+\NormalTok{bt\_transformed }\OtherTok{\textless{}{-}}\NormalTok{ (bt }\SpecialCharTok{{-}}\NormalTok{ mean) }\SpecialCharTok{/}\NormalTok{ sd}
+
+\CommentTok{\# Plot the transformed distribution}
+\FunctionTok{plot}\NormalTok{(bt\_transformed, y, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{main =} \StringTok{"Transformera till standardavvikelse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{block4_files/figure-pdf/unnamed-chunk-3-2.pdf}
+
+\textbf{2. Ett stickprov jämförs med en känd population}
+
+Du har i inlämningsuppgift 3 dragit upprepade stickprov ur populationer
+med olika underliggande fördelningar. Du har även läst om central limit
+theorem att samplingsfördelningen går mot normalfördelning om
+stickprovet är stort nog.
+
+Du vill testa om ett stickprov är draget ur en population med känt
+medelvärde och standardavvikelse. Rätt metod är z-test, men formeln ser
+något annorlunda ut än i 1.
+
+z = ( - µ)/ (σ\textbf{/√n})
+
+är stickprovets medelvärde
+
+µ är populationens medelvärde
+
+n är stickprovets storlek
+
+√n är kvadratroten ur stickprovets storlek
+
+\textbf{2.1} Varför dividerar man populationens standardavvikelse med
+kvadratroten ur stickprovets storlek. Du behöver inte härleda
+matematiken exakt, men anknyt gärna till resultaten i inlämningsuppgift
+3 i ditt svar.
+
+Kvalitetskontrollavdelningen på en fabrik testar regelbundet en produkt.
+Medelvikten är 31.2 g med standardavvikelsen 0.4 g. En morgon vägs ett
+slumpmässigt stickprov av produkten, 16 exemplar, och stickprovets
+medelvikt uppmäts till 31.38 g.
+
+Är produkten tyngre än normalt denna morgon?
+
+\textbf{2.2} Ange nollhypotes och mothypotes
+
+\textbf{2.3} välj signifikansnivå
+
+\textbf{2.4} Beräkna z-test i R.
+
+Du kan transformera X till z med formeln z = ( - µ)/ (σ/√n) och sedan
+slå upp p värdet med pnorm(). Så måste du göra om du bara har en
+z-tabell att tillgå för att komma åt p-värdet.
+
+Det går även utmärkt att låta R göra transformeringen genom att fylla i
+värdet i g i pnorm() tillsammans med medel och standardavvikelse i gram.
+
+Ange om nollhypotesen förkastas eller behålls.
+
+\textbf{2.5} Rita en graf som visar stickprovens förväntade fördelning
+och arean som motsvarar p-värdet. Välj själv om du vill rita grafen med
+X (otransformerade värden i gram) eller med z (transformerade värden,
+standardavvikelsen som enhet) som x-axel.
+
+\textbf{2.6} Formulera resultatet från 2.4 utan att använda statistisk
+terminologi.
+
+\textbf{3. Ett stickprov jämförs med en population, standardavvikelsen
+är okänd}
+
+Ofta har man inte tillgång till standardavvikelsen för populationen. Då
+blir man tvungen att göra en uppskattning av populationens
+standardavvikelse σ, utifrån stickprovets standardavvikelse som
+betecknas SD eller s. Istället för z-test ska man använda t-test
+
+\textbf{t} = ( - µ)/ (\textbf{SD}/√n)
+
+Det finns en enda z-fördelning, men t-fördelningar finns det många, och
+de ser olika ut beroende på antal frihetsgrader. Frihetsgrader är
+antalet mätningar, n, minus antalet parametrar som skattas, i vårt fall
+är det en parameter, medelvärdet.
+
+\textbf{3.1} Rita följande graf:
+
+x\textless-seq(-4, 4, 0.1)
+
+y\textless- dnorm(x)
+
+plot(x,y, type=``l'' )
+
+lines(x, dt(x, 10), col=``red'' )
+
+lines(x, dt(x, 3), col=``blue'' )
+
+abline(v=qnorm(0.025))
+
+abline(v=qt(0.025, 10), col=``red'')
+
+abline(v=qt(0.025, 3), col=``blue'')
+
+Grafen visar en z-fördelning och två t-fördelningar. En med 3
+frihetsgrader och en med 10.
+
+Jag har ritat en linje som utesluter 0.025 av arean åt vänster för varje
+fördelning.
+
+\textbf{3.2} Viket/vilka av följande påståenden stämmer?
+
+Arean till vänster om abline motsvarar p-värdet för ensidiga test.
+
+Det krävs en större avvikelse från µ för att t-testen ska falla ut som
+signifikanta än för z-testet.
+
+\textbf{Hur ditt experiment påverkas av stickprovets storlek}
+
+Koden nedan printar en tabell över t-värden vid olika antal
+frihetsgrader och slutligen för z. Alla värden utesluter arean 0.025 åt
+vänster. Det gör att tabellen passar för tvåsidiga test med
+signifikansnivån α = 0.05.
+
+x\textless-c( 1:20, 100, 200, 300)
+
+qt(0.025, x)
+
+qnorm(0.025)
+
+\textbf{3.3} Kommentera skillnaden mellan z och t. När kan det vara
+rimligt att approximera t-testet med ett z-test?
+
+Tips:
+
+Kanske kan den här grafen vara illustrativ?
+
+x\textless-c( 1:20, 100, 200, 300)
+
+y \textless- qt(0.025, x)
+
+plot(y)
+
+lines(y)
+
+abline(h=qnorm(0.025))
+
+En grupp av 32 kvinnor under speciell bevakning av mödravården föder
+barn. Medelvikten var 3200 g och standardavvikelsen 800 g. Avviker
+medelvikten från den normala medelvikten 3600 g?
+
+\textbf{3.4} Ange nollhypotes och mothypotes
+
+\textbf{3.5} Välj signifikansnivå
+
+\textbf{3.6} Beräkna t-test i R och ange p-värde samt om nollhypotesen
+förkastas eller behålls
+
+Det finns inbyggda funktioner i R för att räkna ttest. Här skulle jag
+vilja att du räknar ut t från formeln \textbf{t} = ( - µ)/
+(\textbf{SD}/√n)
+
+och slår upp i t-tabellen pt() hur ovanligt det beräknade t-värdet är.
+
+Fundera på om du ska göra ett ensidigt eller tvåsidigt test.
+
+Om du vill kan du beräkna ett z-test också och jämföra resultatet.
+
+\textbf{3.7} Formulera resultatet utan att använda statistisk
+terminologi.
+
+\textbf{4. Jämföra två stickprov gruppvis, populationens
+standardavvikelse är okänd}
+
+\textbf{4.1} Skapa en data.frameGruppvis.Vikt med följande data.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+vikt & grupp \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+90 & A \\
+91 & A \\
+93 & A \\
+106 & A \\
+97 & A \\
+108 & A \\
+97 & A \\
+105 & A \\
+106 & A \\
+103 & A \\
+105 & A \\
+96 & A \\
+105 & A \\
+95 & A \\
+90 & A \\
+101 & A \\
+90 & B \\
+91 & B \\
+85 & B \\
+99 & B \\
+93 & B \\
+104 & B \\
+89 & B \\
+103 & B \\
+102 & B \\
+95 & B \\
+103 & B \\
+95 & B \\
+105 & B \\
+87 & B \\
+86 & B \\
+101 & B \\
+\end{longtable}
+
+I den första räkneuppgiften tänker vi oss att grupperna A och B är
+slumpmässigt utvalda ur två definierade populationer, kanske utifrån
+livsstil eller någon diagnos, som vi vill undersöka med avseende på
+vikt. Sammanlagt deltar 32 personer i studien. Har grupperna olika
+medelvikt?
+
+\textbf{4.2 Ange nollhypotes och mothypotes}
+
+\textbf{4.3Välj signifikansnivå}
+
+\textbf{4.4 Beräkna t-test, tex så här}
+
+attach(Gruppvis.Vikt)
+
+t.test(vikt \textasciitilde{} grupp, var.equal = TRUE) \#vikt
+\textasciitilde grupp ska läsas: vikt förklarat av faktorn grupp
+
+Tolka resultattabellen. Ange p-värde, samt om nollhypotesen förkastas
+eller behålls.
+
+\textbf{Faktaruta Welch t-test}
+
+Lägg märke till argumentet:
+
+var.equal = FALSE
+
+Om du väljer var.equal = FALSE så räknar R det klassiska ttest som är
+standardvalet i många statistikmjukvaror. Om du utelämnar var.equal =
+FALSE så kommer R beräkna det så kallade Welch t-test som utgår ifrån
+att variationen kan vara olika i de två grupperna och justerar antalet
+frihetsgrader därefter. Det låter märkligt. Hur skulle variationen kunna
+vara olika om nollhypotesen säger att båda stickprov är tagna ur samma
+population? Lind ger ett praktiskt exempel där man ska avgöra om två två
+olika sorters pappersservetter absorberar olika mycket vatten. Den
+dyrare sorten har jämnare kvalitet, alltså lägre variation. (sid. 367)
+
+Testa gärna att beräkna Welch t-test och jämför resultaten:
+
+t.test(vikt \textasciitilde{} grupp) \# ger samma som t.test(vikt
+\textasciitilde{} grupp, var.equal = FALSE)
+
+Lägg märke till df, degreesoffreedom, som har justerats i Welch t-test.
+
+\textbf{4.5 Formulera resultatet utan att använda statistisk
+terminologi}
+
+\textbf{Jämföra två stickprov där mätningarna hör ihop parvis,
+populationens standardavvikelse är okänd}
+
+En kraftfullare experimentell design när man arbetar med människor, där
+den individuella variationen kan vara mycket stor, är att göra upprepade
+mätningar på samma individ. (Explain the difference between dependent
+and independent samples. sid 373-376) Tänk dig att mätningen A är gjord
+före en tre veckors kontrollerad diet, och mätningen B är gjord efter.
+Nu tänker vi oss alltså att data från 4.1 avser mätningar på bara 16
+personer.
+
+Nollhypotes:
+
+Det är krångligt att få till en stram formulering av nollhypotesen utan
+att skriva en formel.
+
+Nollhypotesen för ett gruppvis test lyder: ''Stickproven A och B är
+dragna ur samma population'' Det kan illustreras med formeln µA = µB.
+Lägg märke till att det inte är samma sak som A = B. Även om stickproven
+är dragna ur samma population så tror vi inte att de ska ge exakt samma
+medelvärde. Det är den underliggande populationen som vi tror har samma
+medelvärde hela tiden.
+
+I ett parvis test beräknas inte gruppernas medelvärde. Istället mäter
+man förändringen för varje individ, d, därefter beräknar man medelvärdet
+för alla förändringar, . Med hjälp av t-testet kan vi ställa i relation
+till variationen i mätningarna. δ är den underliggande populationens
+sanna skillnad.
+
+t = (- δ) /( SD/√n)
+
+Oftast är nollhypotesen att δ = 0
+
+Så här brukar formeln se ut:
+
+t = /( SD/√n)
+
+n är i vårt exempel 16. Vid parvis test är n inte antalet mätningar,
+utan antalet par. Antalet frihetsgrader är n-1, antalet par minus ett.
+
+Den goda strategin att räkna parvis t-test är att skapa en data.frame
+som visar att mätningarna hör ihop, enligt mottot en rad ett case, en
+kolumn en variabel.
+
+\textbf{4.6 Läs in data från 4.1 formatterat på ett nytt sätt}
+
+Parvis.Vikt\textless- read.table(``clipboard'', header=T)
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+A & B \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+90 & 90 \\
+91 & 91 \\
+93 & 85 \\
+106 & 99 \\
+97 & 93 \\
+108 & 104 \\
+97 & 89 \\
+105 & 103 \\
+106 & 102 \\
+103 & 95 \\
+105 & 103 \\
+96 & 95 \\
+105 & 105 \\
+95 & 87 \\
+90 & 86 \\
+101 & 101 \\
+\end{longtable}
+
+Det är även möjligt att återanvända din gamla data.frame genom att lägga
+till paried=T. Normalt känner man ju till i förväg om data hör ihop
+parvis eller ej och jag rekommenderar att ni använder strukturen i
+data.frame.
+
+t.test(vikt \textasciitilde{} grupp, paired = T)
+
+\textbf{4.7 Beräkna parvis ttest, kommentera varför resultatet blir
+annorlunda än vid gruppvis test}
+
+\textbf{5. Illustrera typ I och typ II fel}
+
+Läs om typ I och typ II fel (Typ 1 sid. 325, 322-323, 343, Typ 2 sid.
+322-323, 343-346). Koden nedan ritar upp två normalfördelningar. Tänk er
+att de är stickprovsfördelningar och att man kan använda z-fördelningen
+därför att stickprovets storlek är stort. Den röda fördelningen, µ1,
+gäller om nollhypotesen är sann. Den blåa fördelningen, µ2, gäller om
+alternativhypotesen är sann. I den röda fördelningen har jag ritat in
+arean 0.025.
+
+x=seq(50,140,length=200)
+
+y1=dnorm(x,80, 10)
+
+plot(x,y1,type=`l',lwd=2,col=`red')
+
+y2=dnorm(x,110, 10)
+
+lines(x,y2,type=`l',lwd=2,col=`blue')
+
+cord.x1 \textless- c((round(qnorm(0.975, 80, 10,
+lower.tail=T))),seq((round(qnorm(0.975, 80, 10, lower.tail=T))),
+120,1),120)
+
+cord.y1 \textless- c(0,dnorm(seq((round(qnorm(0.975, 80, 10,
+lower.tail=T))), 120, 1), 80, 10),0)
+
+polygon(cord.x1,cord.y1,col=`red')
+
+Gör ett antal nya grafer:
+
+\textbf{5.1} Rita in en abline som visar gränsen utanför vilken du
+skulle förkasta nollhypotesen µ1 = µ2 till förmån för
+alternativhypotesen µ1 \textless{} µ2. Signifikansnivån ska vara 0.05
+
+\textbf{5.2} Rita in två abline som visar gränserna utanför vilka du
+skulle förkasta nollhypotesen µ1 = µ2 till förmån för
+alternativhypotesen µ1 ≠ µ2. Signifikansnivån ska vara 0.05
+
+\textbf{5.3} Gör en ny 5.2 där du färgar arean som visar risken att
+förkasta en sann nollhypotes. Typ I felet.
+
+\textbf{5.4} Gör en ny 5.2. Vi tänker oss att alternativhypotesen, µ2,
+är sann. Färga en area som visar risken att behålla en falsk
+nollhypotes. Typ II felet, kallas även β. Beräkna och ange β.
+
+\textbf{5.5} Gör en ny 5.4 där du även färgar arean som visar
+sannolikheten att förkasta en falsk nollhypotes. Tips: Det ska bli 1 --
+β. Detta kallas även statistisk kraft, statistical power.
+
+\textbf{6. Ickeparametriskt alternativ till t-test}
+
+Data inspirerade av:
+
+DIFFERENTIATING DENGUE VIRUS INFECTION FROM SCRUB TYPHUS IN THAI ADULTS
+WITH FEVER
+
+GEORGE WATT et al 2003
+
+``{[}\ldots{]} simple criteria to differentiatescrub typhus from dengue
+infection are needed {[}\ldots{]},particularly where rapid confirmatory
+diagnostic tests are notavailable.''
+
+Vita blodkroppar har räknats hos två patientgrupper som är svåra att
+skilja åt: Denguefewer, respektive scrub typhus. Använd en
+hypotestest-strategi för att avgöra om antal vita blodceller/ mm3 kan
+ligga till grund för differentiell diagnos av scrub typhus och
+denguefewer. Man kan \textbf{inte} anta att mätvärdena är
+normalfördelade. Välj α = 0.05.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+count & diagnosis \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3000 & dengue \\
+3200 & dengue \\
+3500 & dengue \\
+5068 & dengue \\
+5679 & dengue \\
+6200 & dengue \\
+6300 & dengue \\
+7020 & dengue \\
+4400 & scrub \\
+4500 & scrub \\
+5900 & scrub \\
+6839 & scrub \\
+7561 & scrub \\
+9047 & scrub \\
+12300 & scrub \\
+14000 & scrub \\
+\end{longtable}
+
+\textbf{6.1 Läs in data och beräkna ett two sample Wilcoxon test (ISwR
+5.4, sid 103)}
+
+\textbf{6.2 Hur formuleras nollhypotes och alternativhypotes i
+Wicoxontestet?}
+
+\textbf{6.3Visar testet att en enkel räkning av vita blodkroppar kan stå
+till grund för differentiell diagnos?}
+
+Om man hade kunnat argumentera trovärdigt för att data i föregående
+uppgift var normalfördelade hade man kunnat genomföra ett vanligt
+gruppvis t-test.
+
+**\\
+6.4Ange nollhypotes och mothypotes för t-testet**
+
+\textbf{6.5Beräkna testet, tolka resultatet, formulera slutsats.}
+
+\textbf{6.6 Varför blir det olika resultat i 6.3 och 6.5?}
+
+\textbf{7. Konfidensintervall som metod för hypotestestning}
+
+I resultattabellerna som t.test skapat finner du även
+konfidensintervall. Att beräkna konfidensintervall är mycket användbart.
+Både för att illustrera hur bra en skattning av en parameter är och för
+resonemang som liknar hypotestest.
+
+I ett parvis t-test undersöker vi om δ ≠ 0.
+
+Vi kan skatta δ med och titta efter om intervallet ± 95\% CI.
+
+Ni har mött tekniken hur man räknar konfidensintervall för medelvärden i
+inlämningsuppgift 3, i beräkning av ett blodtryckintervall som gäller
+95\% av befolkningen. Här vill jag poängtera att beräkningen blir lite
+olika beroende på om populationens standardavvikelse σ, är känd, eller
+om man,måste skatta den utifrån ett stickprovs standardavvikelse, SD.
+Var vänlig slå upp formlerna i en bok. När σ är känd går det att använda
+z,
+
+qnorm(c(0.025, 0.975)) \#Beräknar z värdet för ett 95\%
+konfidensintervall, lägg märke till hur det utesluter 2,5\% av varje
+extrem del av fördelningen.
+
+När måste beräkna t-värde ska du hålla reda på frihetsgraderna
+
+qt(c(0.025, 0.975 , df)
+
+Exempel:
+
+Vikten på fem försöksdjur har mätts till = 28.3, SD = 3.1
+
+Beräkna ett 95\% konfidensintervall för medlet:
+
+Antal frihetsgrader 5-1 = 4 fem mätningar, en skattning
+
+round(28.3 +( qt(c(0.025, 0.975), 4)) * 3.1/sqrt(5) , 1) \#kolla upp
+formeln i bok
+
+{[}1{]} 24.5 32.1
+
+\textbf{7.1} En däckfabrikör mäter 10 däck som körts 50000 miles. I
+medel är 0.32 tum av mönstret kvar, med standardavvikelsen 0.09 tum.
+Beräkna ett 95\% konfidensintervall kring medlet.
+
+\textbf{7.2} Kan fabrikören påstå att 0.30 tum brukar vara kvar efter
+50000 miles utifrån mätningen?
+
+\textbf{7.3} Tio slumpmässigt utvalda individer har ett
+medelkolesterolvärde på 5,4 mmol/l och standardavvikelsen 0.5 mmol/l.
+Beräkna ett 95\% konfidensintervall för medlet.
+
+\textbf{8 ANOVA -- ANalysisOfVariance}
+
+I denna övning nöjer vi oss med en enklare användning av ANOVA. Vi
+betraktar ANOVA som ett sätt att hantera flera samtidiga t-test.
+
+Nollhypotes: µ1= µ2 = µ3
+
+Alternativhypotes: µ1= µ2 = µ3 gäller ej
+
+Vi ställer upp ett antal stickprov och kontrollerar om någon grupp
+avviker från de andra.
+
+\textbf{8.1Läs in datasetet med blodtryck hos tre olika grupper av
+försökspersoner och beräkna ANOVA} med funktionen anova(lm(blodtryck
+\textasciitilde behandling))
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+blodtryck & behandling \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+77 & kontroll \\
+77 & kontroll \\
+78 & kontroll \\
+80 & kontroll \\
+81 & kontroll \\
+89 & kontroll \\
+90 & kontroll \\
+96 & kontroll \\
+99 & kontroll \\
+107 & kontroll \\
+59 & medicinering \\
+66 & medicinering \\
+70 & medicinering \\
+73 & medicinering \\
+76 & medicinering \\
+77 & medicinering \\
+78 & medicinering \\
+81 & medicinering \\
+81 & medicinering \\
+91 & medicinering \\
+64 & träning \\
+66 & träning \\
+69 & träning \\
+72 & träning \\
+73 & träning \\
+74 & träning \\
+74 & träning \\
+80 & träning \\
+84 & träning \\
+99 & träning \\
+\end{longtable}
+
+\textbf{8.2}ANOVA räknar ut ett F värde utifrån hur variationen är
+fördelad över matrisen. Sök efter värdetPr(\textgreater F) i tabellen,
+sannolikheten att få värdet F eller större under förutsättning att
+nollhypotesen stämmer. Om denna sannolikhet är mindre än ditt α-värde
+kan du förkasta nollhypotesen.
+
+\textbf{8.3Välj ett sätt att visualisera data. Du kan låta dig
+inspireras av IswR s 134.}
+
+
+
+\end{document}

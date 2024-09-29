@@ -4,7 +4,7 @@ author: Jacob Widaeus
 subtitle: Statistiska Metoder med R
 format:
   pdf:
-    keep_tex: true
+    keep-tex: true
 editor_options:
   chunk_output_type: console
 knit:
