@@ -1,9 +1,7 @@
 ---
 title: "Inlämningsuppgift block 3 – tabeller, grafer, fördelningar, centrala gränssnittssatsen"
 author: "Statistiska Metoder med R"
-format:
-  pdf:
-    keep-tex: true
+format: docx
 editor_options:
   chunk_output_type: console
 knit:
