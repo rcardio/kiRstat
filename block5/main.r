@@ -1,11 +1,17 @@
-# Loading functions, csv file and data. Saving data as .rda file.
-source("block5/funs.r")
+# Loading functions.
+r_files <- list.files("block5/utils", pattern = "\\.r$", full.names = TRUE)
+for (file in r_files) {
+  source(file)
+}
+# Creating csv file and data.
 output_path <- "block5/data/jasa.csv"
 initiate(output_path)
-data <- read.csv("block5/data/jasa.csv")
+# Read in data in R environment.
+data <- read.csv(paste0("block5/data/jasa_", Sys.Date(), ".csv"))
+# Saving data as .rda file.
 save(data, file = paste0("block5/data/jasa_", Sys.Date(), ".rda"))
 
-# Attention: If open data "jasa" not available, load it from the .rda file.
+### Attention: If open data "jasa" not available, load it from the .rda file ###
 
 # Starting EDA
 glimpse(data)
