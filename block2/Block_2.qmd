@@ -594,7 +594,7 @@ Om filen är sparad i ditt working directory behöver du inte ange filens hela p
 Det ska räcka med ”learningstrategies.txt”
 
 ```{r}
-learningstrategies <- read.table("C:/Users/oesma/Desktop/kiRstat/block2/learningstrategies.txt", header = TRUE)
+learningstrategies <- read.table("learningstrategies.txt", header = TRUE)
 ```
 
 **9.15** Printa en översikt av innehållet i learningstrategies och klistra in här
@@ -610,7 +610,6 @@ summary(learningstrategies)
 Titta på uttycket i hist() nedan.
 
 Förklara vad följande funktioner gör
-
 \$words
 
 \[\]
@@ -619,7 +618,12 @@ strategy == "intentional"
 
 hist(learningstrategies$words[learningstrategies$strategy == "intentional"\])
 
-"\$words" specificerar kolumnen words. \[\] specificerar plats i data frame. Strategy == "intentional" specificerar då kolumnen strategy har intentional som data.
+```{r}
+hist(learningstrategies$words[learningstrategies$strategy == "intentional"],
+  xlab = "", ylab = "", main = "Learningsstrategies")
+```
+
+**Svar:** "\$words" specificerar kolumnen words. \[\] specificerar plats i data frame. Strategy == "intentional" specificerar då kolumnen strategy har intentional som data.
 
 Sammanfattningsvis: I learningsstrategies words kolumn, subsetta de rader som lyder "intentional" i kolumnen strategy.
 
